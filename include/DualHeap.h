@@ -28,7 +28,7 @@ public:
 
     void pendingHeapPush(const T element);
 
-    T current_heap_pop();
+    T active_heap_pop();
 
     int onePlusIndex(const int index);
 
@@ -72,5 +72,5 @@ public:
 
     void swapByIndex(const int index1, const int index2);
 };
-
+#include "DualHeap.cpp"
 #endif // DUALHEAP_H

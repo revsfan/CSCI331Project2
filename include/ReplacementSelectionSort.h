@@ -20,5 +20,5 @@ public:
 
 
 };
-
+#include "ReplacementSelectionSort.cpp"
 #endif // REPLACEMENTSELECTIONSORT_H
