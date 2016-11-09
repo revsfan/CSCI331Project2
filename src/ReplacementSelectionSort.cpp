@@ -25,7 +25,7 @@ std::vector< std::vector <T> > ReplacementSelectionSort<T>::sort(const std::vect
 
           dualHeap ->activeHeapPush( element );
 
-          dualHeap = i + 1;
+          nextItemToSort = i + 1;
     }
 
     int currentList = 0;
@@ -37,7 +37,7 @@ std::vector< std::vector <T> > ReplacementSelectionSort<T>::sort(const std::vect
     while (nextItemToSort < vectorToBeSorted.size() || dualHeap->get_size() > 0) {
 
 
-            lastElementPopped = dualHeap->current_heap_pop();
+            lastElementPopped = dualHeap->active_heap_pop();
 
 
             row->push_back( lastElementPopped );

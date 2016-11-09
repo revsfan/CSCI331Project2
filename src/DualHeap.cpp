@@ -307,7 +307,7 @@ void DualHeap<T>::activeHeapPush(const T element){
 }
 
 template <typename T>
-T DualHeap<T>::current_heap_pop(){
+T DualHeap<T>::active_heap_pop(){
 
     if (active_heap_size() > 0){
 
