@@ -9,7 +9,6 @@ DualHeap<T>::DualHeap(const int totalcap, const bool sortDir, const bool heapDir
     cap = totalcap;
     resultsVector.reserve(cap);
 
-
     active_heap_head = pending_heap_head = 1;
     active_heap_tail = pending_heap_tail = 0;
 
