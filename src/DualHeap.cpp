@@ -9,6 +9,7 @@ DualHeap<T>::DualHeap(const int totalcap, const bool sortDir, const bool heapDir
     cap = totalcap;
     resultsVector.reserve(cap);
 
+
     active_heap_head = pending_heap_head = 1;
     active_heap_tail = pending_heap_tail = 0;
 
@@ -18,28 +19,26 @@ DualHeap<T>::DualHeap(const int totalcap, const bool sortDir, const bool heapDir
 }
 
 template <typename T>
-int DualHeap<T>::get_cap() 
-{
+int DualHeap<T>::get_cap() {
     return cap;
 }
 
 template <typename T>
-int DualHeap<T>::get_size()
-{
+int DualHeap<T>::get_size(){
     return active_heap_size() + pending_heap_size();
 }
 
 template <typename T>
-int DualHeap<T>::active_heap_size()
-{
+int DualHeap<T>::active_heap_size(){
+
     if(active_heap_tail == 0)
         return 0;
     else return (std::abs(pending_heap_head - pending_heap_tail) + 1);
 }
 
 template <typename T>
-int DualHeap<T>::pending_heap_size()
-{
+int DualHeap<T>::pending_heap_size(){
+
     if (pending_heap_tail == 0)
         return 0;
     else return std::abs( (pending_heap_head - pending_heap_tail) + 1 );
@@ -47,8 +46,8 @@ int DualHeap<T>::pending_heap_size()
 }
 
 template <typename T>
-void DualHeap<T>::swapHeaps()
-{
+void DualHeap<T>::swapHeaps(){
+
     int temp;
 
     temp = active_heap_head;
@@ -61,35 +60,35 @@ void DualHeap<T>::swapHeaps()
 }
 
 template <typename T>
-void DualHeap<T>::changeDirection()
-{
+void DualHeap<T>::changeDirection(){
+
     heapDirection = !heapDirection;
     swapHeaps();
 }
 
 template <typename T>
-void DualHeap<T>::pendingHeapPush(const T element)
-{
+void DualHeap<T>::pendingHeapPush(const T element){
+
     changeDirection();
     activeHeapPush(element);
     changeDirection();
 }
 
 template <typename T>
-int DualHeap<T>::leftHeapIndex(const int onePlusIndex)
-{
+int DualHeap<T>::leftHeapIndex(const int onePlusIndex){
+
     return onePlusIndex - 1;
 }
 
 template <typename T>
-int DualHeap<T>::rightHeapIndex(const int onePlusIndex)
-{
+int DualHeap<T>::rightHeapIndex(const int onePlusIndex){
+
     return cap - onePlusIndex;
 }
 
 template <typename T>
-int DualHeap<T>::leftHeapTailIndex()
-{
+int DualHeap<T>::leftHeapTailIndex(){
+
     if (heapDirection)
         return leftHeapIndex(active_heap_tail);
     else
@@ -97,8 +96,8 @@ int DualHeap<T>::leftHeapTailIndex()
 }
 
 template <typename T>
-int DualHeap<T>::rightHeapTailIndex()
-{
+int DualHeap<T>::rightHeapTailIndex(){
+
     if(heapDirection)
         return rightHeapIndex(pending_heap_tail);
     else
@@ -106,45 +105,42 @@ int DualHeap<T>::rightHeapTailIndex()
 }
 
 template <typename T>
-bool DualHeap<T>::isInLeftHeap(const int index)
-{
+bool DualHeap<T>::isInLeftHeap(const int index){
+
     return (index <= leftHeapTailIndex());
 }
 
 template <typename T>
-bool DualHeap<T>::isInRightHeap(const int index)
-{
+bool DualHeap<T>::isInRightHeap(const int index){
+
     return (index >= rightHeapTailIndex());
 }
 
 template <typename T>
-int DualHeap<T>::onePlusLeftHeapIndex(const int index
-{
+int DualHeap<T>::onePlusLeftHeapIndex(const int index){
+
     return index + 1;
 }
 
 template <typename T>
-int DualHeap<T>::onePlusRightHeapIndex(const int index)
-{
+int DualHeap<T>::onePlusRightHeapIndex(const int index){
+
     return cap - index;
 }
 
 template <typename T>
-bool DualHeap<T>::shouldSwapByIndex(const int childIndex, const int parentIndex)
-{
-    if(sortDirection)
-	{
+bool DualHeap<T>::shouldSwapByIndex(const int childIndex, const int parentIndex){
+
+    if(sortDirection){
         return resultsVector[childIndex] < resultsVector[parentIndex];
-    }
-	else
-	{
+    }else{
         return resultsVector[childIndex] > resultsVector[childIndex];
     }
 }
 
 template <typename T>
-void DualHeap<T>::swapByIndex(const int index1, const int index2)
-{
+void DualHeap<T>::swapByIndex(const int index1, const int index2){
+
     T temp = resultsVector[index1];
     resultsVector[index1] = resultsVector[index2];
     resultsVector[index2] = temp;
@@ -156,10 +152,9 @@ void DualHeap<T>::heapifyUp(const int index){
     int childIndex = index;
     int trueParentIndex = parentIndex(childIndex);
 
-    if (trueParentIndex != -1)
-	{
-        if(shouldSwapByIndex(childIndex, trueParentIndex))
-		{
+    if (trueParentIndex != -1){
+
+        if(shouldSwapByIndex(childIndex, trueParentIndex)){
             swapByIndex(childIndex, trueParentIndex);
             heapifyUp(trueParentIndex);
         }
@@ -169,16 +164,11 @@ void DualHeap<T>::heapifyUp(const int index){
 template <typename T>
 int DualHeap<T>::onePlusIndex(const int index){
 
-    if(isInLeftHeap(index))
-	{
+    if(isInLeftHeap(index)){
         return onePlusLeftHeapIndex(index);
-    }
-	else if(isInRightHeap(index))
-	{
+    }else if(isInRightHeap(index)){
         return onePlusRightHeapIndex(index);
-    }
-	else
-	{
+    }else{
         //this would be an error because it is out of range
     }
 }
@@ -186,16 +176,11 @@ int DualHeap<T>::onePlusIndex(const int index){
 template <typename T>
 bool DualHeap<T>::hasChildren(const int parentIndex){
 
-    if(isInLeftHeap(parentIndex))
-	{
+    if(isInLeftHeap(parentIndex)){
         return (onePlusIndex(parentIndex) * 2 <= onePlusIndex(leftHeapTailIndex()) );
-    } 
-	else if (isInRightHeap(parentIndex))
-	{
+    } else if (isInRightHeap(parentIndex)){
         return (onePlusIndex(parentIndex) * 2 <= onePlusIndex(rightHeapTailIndex()) );
-    }
-	else
-	{
+    }else{
         return false;
     }
 }
@@ -206,16 +191,13 @@ int DualHeap<T>::leftChildIndex(const int parentIndex){
     int leftChildIndex = -1;
     int candidateLeftChild;
 
-    if (isInLeftHeap(parentIndex))
-	{
+    if (isInLeftHeap(parentIndex)){
         candidateLeftChild = leftHeapIndex(onePlusLeftHeapIndex(parentIndex) * 2);
 
-        if(isInLeftHeap(candidateLeftChild))
-		{
+        if(isInLeftHeap(candidateLeftChild)){
             leftChildIndex = candidateLeftChild;
         }
-    }
-	else if (isInRightHeap(parentIndex)){
+    }else if (isInRightHeap(parentIndex)){
         candidateLeftChild = rightHeapIndex(onePlusRightHeapIndex(parentIndex) * 2);
 
         if(isInRightHeap(candidateLeftChild)){
@@ -231,17 +213,16 @@ int DualHeap<T>::rightChildIndex(const int parentIndex){
     int rightChildIndex = -1;
     int candidateRightChild;
 
-    if(isInLeftHeap(parentIndex))
-	{
+    if(isInLeftHeap(parentIndex)){
+
         candidateRightChild = leftHeapIndex( onePlusLeftHeapIndex(parentIndex) * 2 + 1);
 
-        if (isInLeftHeap(candidateRightChild))
-		{
+        if (isInLeftHeap(candidateRightChild)){
+
             rightChildIndex = candidateRightChild;
         }
-    }
-	else if(isInRightHeap(parentIndex))
-	{
+    }else if(isInRightHeap(parentIndex)){
+
         candidateRightChild = rightHeapIndex(onePlusRightHeapIndex(parentIndex) * 2 + 1);
 
         if (isInRightHeap(candidateRightChild)){
@@ -263,13 +244,10 @@ void DualHeap<T>::heapifyDown(const int index){
         int tempSwapIndex = -1;
 
 
-        if(trueLeftChildIndex != -1)
-		{
-            if(trueRightChildIndex != -1)
-			{
+        if(trueLeftChildIndex != -1){
+            if(trueRightChildIndex != -1){
 
-                if(sortDirection)
-				{
+                if(sortDirection){
 
                     if( resultsVector[trueLeftChildIndex] < resultsVector[trueRightChildIndex])
                         tempSwapIndex = trueLeftChildIndex;
@@ -280,14 +258,11 @@ void DualHeap<T>::heapifyDown(const int index){
                     else
                         tempSwapIndex = trueRightChildIndex;
                 }
-            }
-			else
-			{
+            }else{
                 tempSwapIndex = trueLeftChildIndex;
             }
 
-            if(shouldSwapByIndex(tempSwapIndex, parentIndex))
-			{
+            if(shouldSwapByIndex(tempSwapIndex, parentIndex)){
                 swapByIndex(tempSwapIndex, parentIndex);
                 heapifyDown(tempSwapIndex);
             }
@@ -296,21 +271,15 @@ void DualHeap<T>::heapifyDown(const int index){
 }
 
 template <typename T>
-int DualHeap<T>::parentIndex(const int childIndex)
-{
+int DualHeap<T>::parentIndex(const int childIndex){
 
     int parentIndex = -1;
 
-    if(isInLeftHeap(childIndex) && onePlusLeftHeapIndex(childIndex) != 1)
-	{
+    if(isInLeftHeap(childIndex) && onePlusLeftHeapIndex(childIndex) != 1){
         parentIndex = leftHeapIndex(onePlusLeftHeapIndex(childIndex) / 2);
-    }
-	else if (isInRightHeap(childIndex) && onePlusRightHeapIndex(childIndex) != 1)
-	{
+    }else if (isInRightHeap(childIndex) && onePlusRightHeapIndex(childIndex) != 1){
         parentIndex = rightHeapIndex(onePlusRightHeapIndex(childIndex) / 2);
-    }
-	else
-	{
+    }else{
         return parentIndex;
     }
 }
@@ -322,18 +291,17 @@ void DualHeap<T>::activeHeapPush(const T element){
     if ( (active_heap_size() + pending_heap_size()) < cap) {
 
         int tailIndex = -1;
+
         active_heap_tail += 1;
 
-        if(heapDirection)
-		{
+        if(heapDirection){
             tailIndex = leftHeapIndex(active_heap_tail);
-        }
-		else
-		{
+        }else{
             tailIndex = rightHeapIndex(active_heap_tail);
         }
 
         resultsVector[tailIndex] = element;
+
         heapifyUp(tailIndex);
     }
 }
@@ -342,25 +310,34 @@ template <typename T>
 T DualHeap<T>::active_heap_pop(){
 
     if (active_heap_size() > 0){
+
         T outputElement;
+
         if(heapDirection){
+
             outputElement = resultsVector[leftHeapIndex(active_heap_head)];
+
             resultsVector[leftHeapIndex(active_heap_head)] = resultsVector[leftHeapIndex(active_heap_tail)];
+
             active_heap_tail -= 1;
+
             heapifyDown(leftHeapIndex(active_heap_head));
-        }
-		else
-		{
+
+
+        }else{
+
             outputElement = resultsVector[rightHeapIndex(active_heap_head)];
+
             resultsVector[rightHeapIndex(active_heap_head)] = resultsVector[rightHeapIndex(active_heap_tail)];
+
             active_heap_tail -= 1;
+
             heapifyDown(rightHeapIndex(active_heap_head));
         }
 
         return outputElement;
-    }
-	else
-	{
+    }else{
+
         //error empty heap
     }
 }
