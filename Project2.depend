@@ -11,3 +11,28 @@
 1478669112 c:\users\stevecaboose\desktop\project2\include\dualheap.h
 	<vector>
 
+1478845673 source:c:\users\stevecaboose\documents\github\csci331project2\main.cpp
+	<iostream>
+	<vector>
+	"ReplacementSelectionSort.h"
+	"DualHeap.h"
+
+1478836980 c:\users\stevecaboose\documents\github\csci331project2\include\replacementselectionsort.h
+	<vector>
+	"ReplacementSelectionSort.cpp"
+
+1478838207 c:\users\stevecaboose\documents\github\csci331project2\src\replacementselectionsort.cpp
+	"ReplacementSelectionSort.h"
+	"DualHeap.h"
+	<vector>
+
+1478836980 c:\users\stevecaboose\documents\github\csci331project2\include\dualheap.h
+	<vector>
+	"DualHeap.cpp"
+
+1478836980 c:\users\stevecaboose\documents\github\csci331project2\src\dualheap.cpp
+	"DualHeap.h"
+	<stdlib.h>
+	<cstdlib>
+	<cmath>
+

@@ -6,9 +6,11 @@ template <typename T>
 std::vector< std::vector <T> > ReplacementSelectionSort<T>::sort(const std::vector<T> vectorToBeSorted, const int heapSize, const bool sortDirection){
 
 
-    if (heapSize < 1) {
-        //error
-    }
+    cout << endl << "test line";
+
+//    if (heapSize < 1) {
+//        //error
+//    }
 
 
     std::vector< std::vector<T> > *outputVector = new std::vector< std::vector<T> >;
@@ -19,11 +21,15 @@ std::vector< std::vector <T> > ReplacementSelectionSort<T>::sort(const std::vect
     int nextItemToSort;
 
 
-    for (int i = 0; i < totalCap && i < vectorToBeSorted.size()-1; i++){
+
+
+    for (int i = 0; i < totalCap && i < vectorToBeSorted.size(); i++){
 
           element = vectorToBeSorted[i];
 
-          dualHeap ->activeHeapPush( element );
+          //dualHeap ->activeHeapPush( element );
+
+          dualHeap.activeHeapPush(element);
 
           nextItemToSort = i + 1;
     }
