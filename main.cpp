@@ -2,6 +2,7 @@
 #include <vector>
 #include "ReplacementSelectionSort.h"
 #include "DualHeap.h"
+//#include "ReplacementSelectionSort.cpp"
 
 using namespace std;
 
@@ -36,7 +37,9 @@ int main()
 
 
 
-
+    for (int i = 0; i < sampleData.size(); i++){
+        cout << sampleData[i] << endl;
+    }
 
     replacementSelectionSortRun(sampleData, 10);
 
