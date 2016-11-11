@@ -1,12 +1,14 @@
 #include "ReplacementSelectionSort.h"
 #include "DualHeap.h"
 #include <vector>
-
+//Test
 template <typename T>
-std::vector< std::vector <T> > ReplacementSelectionSort<T>::sort(const std::vector<T> vectorToBeSorted, const int heapSize, const bool sortDirection){
+std::vector< std::vector <T> > ReplacementSelectionSort<T>::sort(const std::vector<T> vectorToBeSorted, const int heapSize, const bool sortDirection)
+{
 
 
-    if (heapSize < 1) {
+    if (heapSize < 1) 
+	{
         //error
     }
 
@@ -19,12 +21,11 @@ std::vector< std::vector <T> > ReplacementSelectionSort<T>::sort(const std::vect
     int nextItemToSort;
 
 
-    for (int i = 1; i < totalCap && i < vectorToBeSorted.size(); i++){
+    for (int i = 1; i < totalCap && i < vectorToBeSorted.size(); i++)
+	{
 
           element = vectorToBeSorted[i];
-
           dualHeap ->activeHeapPush( element );
-
           nextItemToSort = i + 1;
     }
 
@@ -34,7 +35,8 @@ std::vector< std::vector <T> > ReplacementSelectionSort<T>::sort(const std::vect
 
     std::vector <T> *row = new std::vector<T>;
 
-    while (nextItemToSort < vectorToBeSorted.size() || dualHeap->get_size() > 0) {
+    while (nextItemToSort < vectorToBeSorted.size() || dualHeap->get_size() > 0) 
+	{
 
 
             lastElementPopped = dualHeap->active_heap_pop();
@@ -42,28 +44,39 @@ std::vector< std::vector <T> > ReplacementSelectionSort<T>::sort(const std::vect
 
             row->push_back( lastElementPopped );
 
-            if ( nextItemToSort < vectorToBeSorted.size() ) {
+            if ( nextItemToSort < vectorToBeSorted.size() ) 
+			{
                 nextElement = vectorToBeSorted[nextItemToSort];
                 nextItemToSort++;
 
 
-                if (sortDirection) {
-                    if (nextElement < lastElementPopped) {
+                if (sortDirection) 
+				{
+                    if (nextElement < lastElementPopped)
+					{
                         dualHeap->pendingHeapPush( nextElement );
-                    } else {
+                    } 
+					else 
+					{
                         dualHeap->activeHeapPush( nextElement );
                     }
-                } else {
-                    if (nextElement > lastElementPopped) {
+                }
+				else 
+				{
+                    if (nextElement > lastElementPopped) 
+					{
                         dualHeap->pendingHeapPush( nextElement );
-                    } else {
+                    } 
+					else 
+					{
                         dualHeap->activeHeapPush( nextElement );
                     }
                 }
 
             }
 
-            if (dualHeap->active_heap_size() == 0) {
+            if (dualHeap->active_heap_size() == 0) 
+			{
 
                 dualHeap->changeDirection();
                 currentList++;
