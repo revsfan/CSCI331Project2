@@ -7,86 +7,86 @@ std::vector< std::vector <T> > ReplacementSelectionSort<T>::sort(const std::vect
 {
 
 
-    if (heapSize < 1) 
+	if (heapSize < 1) 
 	{
-        //error
-    }
+		//error
+	}
 
 
-    std::vector< std::vector<T> > *outputVector = new std::vector< std::vector<T> >;
-    DualHeap<T> *dualHeap = new DualHeap<T>( heapSize, sortDirection );
+	std::vector< std::vector<T> > *outputVector = new std::vector< std::vector<T> >;
+	DualHeap<T> *dualHeap = new DualHeap<T>( heapSize, sortDirection );
 
-    T   element;
-    int totalCap = dualHeap -> get_cap();
-    int nextItemToSort;
+	T   element;
+	int totalCap = dualHeap -> get_cap();
+	int nextItemToSort;
 
 
-    for (int i = 1; i < totalCap && i < vectorToBeSorted.size(); i++)
-	{
-
-          element = vectorToBeSorted[i];
-          dualHeap ->activeHeapPush( element );
-          nextItemToSort = i + 1;
-    }
-
-    int currentList = 0;
-    T lastElementPopped;
-    T nextElement;
-
-    std::vector <T> *row = new std::vector<T>;
-
-    while (nextItemToSort < vectorToBeSorted.size() || dualHeap->get_size() > 0) 
+	for (int i = 1; i < totalCap && i < vectorToBeSorted.size(); i++)
 	{
 
+		  element = vectorToBeSorted[i];
+		  dualHeap ->activeHeapPush( element );
+		  nextItemToSort = i + 1;
+	}
 
-            lastElementPopped = dualHeap->active_heap_pop();
+	int currentList = 0;
+	T lastElementPopped;
+	T nextElement;
+
+	std::vector <T> *row = new std::vector<T>;
+
+	while (nextItemToSort < vectorToBeSorted.size() || dualHeap->get_size() > 0) 
+	{
 
 
-            row->push_back( lastElementPopped );
+			lastElementPopped = dualHeap->active_heap_pop();
 
-            if ( nextItemToSort < vectorToBeSorted.size() ) 
+
+			row->push_back( lastElementPopped );
+
+			if ( nextItemToSort < vectorToBeSorted.size() ) 
 			{
-                nextElement = vectorToBeSorted[nextItemToSort];
-                nextItemToSort++;
+				nextElement = vectorToBeSorted[nextItemToSort];
+				nextItemToSort++;
 
 
-                if (sortDirection) 
+				if (sortDirection) 
 				{
-                    if (nextElement < lastElementPopped)
+					if (nextElement < lastElementPopped)
 					{
-                        dualHeap->pendingHeapPush( nextElement );
-                    } 
+						dualHeap->pendingHeapPush( nextElement );
+					} 
 					else 
 					{
-                        dualHeap->activeHeapPush( nextElement );
-                    }
-                }
+						dualHeap->activeHeapPush( nextElement );
+					}
+				}
 				else 
 				{
-                    if (nextElement > lastElementPopped) 
+					if (nextElement > lastElementPopped) 
 					{
-                        dualHeap->pendingHeapPush( nextElement );
-                    } 
+						dualHeap->pendingHeapPush( nextElement );
+					} 
 					else 
 					{
-                        dualHeap->activeHeapPush( nextElement );
-                    }
-                }
+						dualHeap->activeHeapPush( nextElement );
+					}
+				}
 
-            }
+			}
 
-            if (dualHeap->active_heap_size() == 0) 
+			if (dualHeap->active_heap_size() == 0) 
 			{
 
-                dualHeap->changeDirection();
-                currentList++;
-                outputVector->push_back( *row );
-                row = new std::vector<T>;
-            }
-        }
+				dualHeap->changeDirection();
+				currentList++;
+				outputVector->push_back( *row );
+				row = new std::vector<T>;
+			}
+		}
 
-        delete dualHeap;
+		delete dualHeap;
 
-        return *outputVector;
+		return *outputVector;
 
 }
