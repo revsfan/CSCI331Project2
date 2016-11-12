@@ -1,24 +1,58 @@
-#ifndef REPLACEMENTSELECTIONSORT_H
-#define REPLACEMENTSELECTIONSORT_H
 
+#ifndef REPLACEMENT_SELECTION_SORT
+#define REPLACEMENT_SELECTION_SORT
 #include <vector>
+#include <iostream>
+#include <fstream>
+#include <functional>
+#include <typeinfo>
 
 
-template <typename T>
-class ReplacementSelectionSort
-{
-
-
+using namespace std;
+template <class T>
+class ReplacementSelectionSort{
 private:
 
-    std::vector<T> resultsVector;
+
+	bool activeLeftHeap,
+        direction_flag;
+
+	int size,
+        leftHeapStart,
+        leftHeapEnd,
+        rightHeapStart,
+        rightHeapEnd;
+
+
+	vector<T> dualHeap;
+
+
+
+	void heapify (bool leftSide);
+	void siftUp(int index, bool leftSide);
+	void siftDown (int index, bool leftSide);
+
+
+	int left(int index, bool leftSide);
+	int right(int index, bool leftSide);
+	int parent(int index, bool leftSide);
+	void swap(int index1, int index2);
+
+
+	T pop();
+	T initHeap(istream& infile);
+
+
+	void current_dualHeap_push(const T entry);
+	void pending_dualHeap_push (const T entry);
+	void swapActive();
+
+	//void printHeap();//prints the dualHeap to cout for monitoring purposes
+
+	void sortPreMerge(istream& infile,ostream& outputfile);
 
 public:
 
-     static std::vector< std::vector<T> > sort(const std::vector<T> vectorToBeSorted, const int heapSize = 10, const bool sortDirection = true);
-
-
-
+	ReplacementSelectionSort(const int _size = 10, istream& _infile = new ifstream("input.txt"), ostream& _outputfile = cout,  const bool _sort = true);
 };
-#include "ReplacementSelectionSort.cpp"
-#endif // REPLACEMENTSELECTIONSORT_H
+#endif
