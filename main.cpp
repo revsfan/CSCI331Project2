@@ -43,15 +43,31 @@ int main()
 
     replacementSelectionSortRun(sampleData, 10);
 
+    cout<< endl;
+    for (int i = 0; i < sampleData.size(); i++){
+        cout << sampleData[i] << endl;
+    }
+
     return 0;
 }
 
     template <typename T>
-    void replacementSelectionSortRun( const std::vector<T> SAMPLE_DATA, const int HEAP_SIZE){
+    void replacementSelectionSortRun( const std::vector<T> SAMPLE_DATA, const int HEAP_SIZE)
+    {
 
-    std::vector< std::vector<T> > results = ReplacementSelectionSort<T>::sort( SAMPLE_DATA, HEAP_SIZE, true );
+        std::vector< std::vector<T> > results = ReplacementSelectionSort<T>::sort( SAMPLE_DATA, HEAP_SIZE, true );
 
+        cout<< endl;
+        for (int i = 0; i < results.size(); i++)
+        {
+            //cout << i <<": "<< results[i].size() << endl;
 
+            for (int j = 0; j < results[i].size(); j++)
+            {
+                cout << "results" << "[" << i << "]" << "[" << j << "]" <<results[i][j] << endl;
+
+            }
+        }
 
     }
 

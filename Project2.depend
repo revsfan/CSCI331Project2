@@ -5,8 +5,12 @@
 	"ReplacementSelectionSort.h"
 	"DualHeap.h"
 
+1478845673 h"
+
 1478669112 c:\users\stevecaboose\desktop\project2\include\replacementselectionsort.h
 	<vector>
+
+1478836980 
 
 1478669112 c:\users\stevecaboose\desktop\project2\include\dualheap.h
 	<vector>
@@ -21,6 +25,8 @@
 	<vector>
 	"ReplacementSelectionSort.cpp"
 
+1478836980 ntSelectionSort.cpp"
+
 1478838207 c:\users\stevecaboose\documents\github\csci331project2\src\replacementselectionsort.cpp
 	"ReplacementSelectionSort.h"
 	"DualHeap.h"
@@ -30,7 +36,34 @@
 	<vector>
 	"DualHeap.cpp"
 
+1478836980 cpp"
+
 1478836980 c:\users\stevecaboose\documents\github\csci331project2\src\dualheap.cpp
+	"DualHeap.h"
+	<stdlib.h>
+	<cstdlib>
+	<cmath>
+
+1478963096 source:/home/osboxes/Desktop/CSCI331Project2/main.cpp
+	<iostream>
+	<vector>
+	"ReplacementSelectionSort.h"
+	"DualHeap.h"
+
+1478829181 /home/osboxes/Desktop/CSCI331Project2/include/ReplacementSelectionSort.h
+	<vector>
+	"ReplacementSelectionSort.cpp"
+
+1478963362 /home/osboxes/Desktop/CSCI331Project2/src/ReplacementSelectionSort.cpp
+	"ReplacementSelectionSort.h"
+	"DualHeap.h"
+	<vector>
+
+1478829181 /home/osboxes/Desktop/CSCI331Project2/include/DualHeap.h
+	<vector>
+	"DualHeap.cpp"
+
+1478829181 /home/osboxes/Desktop/CSCI331Project2/src/DualHeap.cpp
 	"DualHeap.h"
 	<stdlib.h>
 	<cstdlib>

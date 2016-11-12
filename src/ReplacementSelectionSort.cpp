@@ -1,12 +1,12 @@
 #include "ReplacementSelectionSort.h"
 #include "DualHeap.h"
 #include <vector>
-
+using namespace std;
 template <typename T>
 std::vector< std::vector <T> > ReplacementSelectionSort<T>::sort(const std::vector<T> vectorToBeSorted, const int heapSize, const bool sortDirection){
 
 
-    cout << endl << "test line";
+    std::cout << std::endl << "test line";
 
 //    if (heapSize < 1) {
 //        //error
@@ -29,7 +29,7 @@ std::vector< std::vector <T> > ReplacementSelectionSort<T>::sort(const std::vect
 
           //dualHeap ->activeHeapPush( element );
 
-          dualHeap.activeHeapPush(element);
+          dualHeap->activeHeapPush(element);
 
           nextItemToSort = i + 1;
     }
