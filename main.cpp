@@ -31,7 +31,7 @@ int main(){
     srand(2);
 
     //test ints
-	//test<int> ("randomIntTest_in.txt","ascending_randomIntTest_out", true);
+	test<int> ("randomIntTest_in.txt","ascending_randomIntTest_out", true);
     //test<int> ("randomIntTest_in.txt", "descending_randomIntTest_out", false);
 
 	//test doubles
@@ -42,7 +42,7 @@ int main(){
 	//test<float> ("randomfloatTest_in.txt", "descending_randomfloatTest_out", false);
 
     //test Strings
-    stringTest ("randomStringTest_in.txt", "descending_randomStringTest_out", false);
+    //stringTest ("randomStringTest_in.txt", "descending_randomStringTest_out", false);
 
 
 
@@ -61,7 +61,7 @@ void test(string inputFileName, string outputFileName, bool direction_flag){
 
 	ifstream inputFile(inputFileName);
 	ofstream otemp("temp.txt");
-	cout << "rs\n";
+	cout << "Running Replacement Selection Sort\n";
 
 	ReplacementSelectionSort<T> sortedRuns(15, inputFile ,otemp, direction_flag);
 	otemp.close();
@@ -69,8 +69,11 @@ void test(string inputFileName, string outputFileName, bool direction_flag){
 	ifstream itemp("temp.txt");
 	ofstream outputFile(outputFileName);
 
-	cout << "out\n";
+	cout << "...Done\n";
 	checkRuns<T>(itemp, outputFile, direction_flag);
+
+    itemp.close();
+    std::remove("temp.txt");
 }
 
 template<typename T>
@@ -180,7 +183,8 @@ void stringTest(string inputFileName, string outputFileName, bool ascending){
 
 
 void randomStrings(ostream& outfile){
-	int strlength=0;
+
+	int strlength = 0;
 	int fileLen;
 
 	fileLen = rand() % (100 + rand() % 100);
@@ -203,6 +207,7 @@ void randomStrings(ostream& outfile){
 }
 
 void gen_random(char *s, const int len) {
+
     static const char alphanum[] =
         "0123456789"
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
