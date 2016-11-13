@@ -44,15 +44,23 @@
 	<cstdlib>
 	<cmath>
 
-1478963096 source:/home/osboxes/Desktop/CSCI331Project2/main.cpp
-	<iostream>
-	<vector>
+1479072341 source:/home/osboxes/Desktop/CSCI331Project2/main.cpp
 	"ReplacementSelectionSort.h"
-	"DualHeap.h"
+	<fstream>
+	<iostream>
+	<string>
+	<typeinfo>
+	<cmath>
+	<sstream>
+	<stdio.h>
+	<stdlib.h>
 
-1478829181 /home/osboxes/Desktop/CSCI331Project2/include/ReplacementSelectionSort.h
+1479075428 /home/osboxes/Desktop/CSCI331Project2/include/ReplacementSelectionSort.h
 	<vector>
-	"ReplacementSelectionSort.cpp"
+	<iostream>
+	<fstream>
+	<functional>
+	<typeinfo>
 
 1478963362 /home/osboxes/Desktop/CSCI331Project2/src/ReplacementSelectionSort.cpp
 	"ReplacementSelectionSort.h"

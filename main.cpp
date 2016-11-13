@@ -70,7 +70,9 @@ void test(string inputFileName, string outputFileName, bool direction_flag)
 	ofstream otemp;
 	otemp.open("temp.txt");
 	cout << "Running Replacement Selection Sort\n";
-    sortedRuns.initReplacementSelectionSort(15, inputFile ,otemp, direction_flag);
+
+
+    ReplacementSelectionSort<string> sortedRuns(15, inputFile ,otemp, direction_flag);
 	otemp.close();
 
 	ifstream itemp;
@@ -235,7 +237,7 @@ void randomStrings(ostream& outfile)
 
 }
 
-void gen_random(char *s, const int len) 
+void gen_random(char *s, const int len)
 {
 
     static const char alphanum[] =
@@ -243,7 +245,7 @@ void gen_random(char *s, const int len)
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         "abcdefghijklmnopqrstuvwxyz";
 
-    for (int i = 0; i < len; ++i) 
+    for (int i = 0; i < len; ++i)
 	{
         s[i] = alphanum[rand() % (sizeof(alphanum) - 1)];
     }

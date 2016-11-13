@@ -24,6 +24,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -34,7 +35,9 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/ReplacementSelectionSort.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/ReplacementSelectionSort.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
