@@ -72,7 +72,8 @@ void test(string inputFileName, string outputFileName, bool direction_flag)
 	cout << "Running Replacement Selection Sort\n";
 
 
-    ReplacementSelectionSort<string> sortedRuns(15, inputFile ,otemp, direction_flag);
+	cout << "Running Replacement Selection Sort\n";
+    ReplacementSelectionSort<string> sortedRuns (15, inputFile ,otemp, direction_flag);
 	otemp.close();
 
 	ifstream itemp;

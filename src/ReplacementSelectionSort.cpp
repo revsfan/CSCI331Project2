@@ -18,6 +18,7 @@ ReplacementSelectionSort<T>::ReplacementSelectionSort(const int _size, istream& 
 		sort(_infile, _outputfile);
 }
 
+//initHeap fills the active heap with elements from the input file
 template <typename T>
 ReplacementSelectionSort<T>::~ReplacementSelectionSort()
 {
@@ -487,3 +488,4 @@ template class ReplacementSelectionSort<int>;
 template class ReplacementSelectionSort<string>;
 template class ReplacementSelectionSort<double>;
 template class ReplacementSelectionSort<float>;
+
