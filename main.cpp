@@ -3,11 +3,12 @@
 #include <iostream>
 #include <string>
 #include <typeinfo>
-#include <random>
+//#include <random>
 #include <cmath>
 #include <sstream>
-#include <conio.h>
+//#include <conio.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -26,7 +27,8 @@ void randomStrings(ostream& outfile);
 
 void gen_random(char *s, const int len);
 
-int main(){
+int main()
+{
 
     srand(2);
 
@@ -51,46 +53,56 @@ int main(){
 }
 
 template <typename T>
-void test(string inputFileName, string outputFileName, bool direction_flag){
+void test(string inputFileName, string outputFileName, bool direction_flag)
+{
+    char const* inFileName = inputFileName.c_str();
+    char const* outFileName = outputFileName.c_str();
 
-	ofstream randomTestFile(inputFileName);
+    ofstream randomTestFile;
+    randomTestFile.open (inFileName);
 
-	cout << "Creating test file\n";
-	generateTestFile<T>(randomTestFile);
-	randomTestFile.close();
+    cout << "Creating test file\n";
+    generateTestFile<T>(randomTestFile);
+    randomTestFile.close();
 
-	ifstream inputFile(inputFileName);
-	ofstream otemp("temp.txt");
+    ifstream inputFile;
+    inputFile.open(inFileName);
+	ofstream otemp;
+	otemp.open("temp.txt");
 	cout << "Running Replacement Selection Sort\n";
-
-	ReplacementSelectionSort<T> sortedRuns(15, inputFile ,otemp, direction_flag);
+    sortedRuns.initReplacementSelectionSort(15, inputFile ,otemp, direction_flag);
 	otemp.close();
 
-	ifstream itemp("temp.txt");
-	ofstream outputFile(outputFileName);
+	ifstream itemp;
+	itemp.open("temp.txt");
+	ofstream outputFile(outFileName);
 
 	cout << "...Done\n";
 	checkRuns<T>(itemp, outputFile, direction_flag);
 
-    itemp.close();
+	itemp.close();
     std::remove("temp.txt");
+
 }
 
 template<typename T>
-void generateTestFile(ostream& outfile){
+void generateTestFile(ostream& outfile)
+{
 
 	int strlength;
 	int fileLen;
 	fileLen = rand() % (rand() % 1000);
 
-	for(int i = 0; i < fileLen; i++){
+	for(int i = 0; i < fileLen; i++)
+	{
 
 		strlength = 1 + rand()% 3;
 
 		T num = rand() % (int)(pow(10,strlength));
 
 		outfile << num <<" ";
-		if(i % 5 == 0){
+		if(i % 5 == 0)
+		{
 			outfile << "\n";
 			}
 
@@ -99,7 +111,8 @@ void generateTestFile(ostream& outfile){
 
 
 template <typename T>
-void checkRuns(istream& infile,ostream& outfile, bool direction_flag){
+void checkRuns(istream& infile,ostream& outfile, bool direction_flag)
+{
 
 
 	int runLength = 0;
@@ -118,7 +131,8 @@ void checkRuns(istream& infile,ostream& outfile, bool direction_flag){
 
 	string curLine;
 
-	while(getline(infile, curLine)){
+	while(getline(infile, curLine))
+	{
 
 		runLength = 0;
 		outfile << curLine<<"\n";
@@ -128,26 +142,33 @@ void checkRuns(istream& infile,ostream& outfile, bool direction_flag){
 		runLength++;
 		totalObj++;
 
-		while(!stringStream.eof()){
+		while(!stringStream.eof())
+		{
 
 			stringStream>>curObj;
 			runLength++;
 			totalObj++;
-			if(direction_flag){
+			if(direction_flag)
+			{
 
-				if(curObj < prevObj){
+				if(curObj < prevObj)
+				{
 
 					isSorted = false;
 				}
-			}else{
+			}
+			else
+			{
 
-				if(curObj > prevObj){
+				if(curObj > prevObj)
+				{
 					isSorted = false;
 				}
 
 			}
 		}
-		if(runLength > maxRunLength){
+		if(runLength > maxRunLength)
+		{
 			maxRunLength = runLength;
 		}
 	}
@@ -162,27 +183,33 @@ void checkRuns(istream& infile,ostream& outfile, bool direction_flag){
 }
 
 
-void stringTest(string inputFileName, string outputFileName, bool ascending){
-
-	ofstream testFile(inputFileName);
+void stringTest(string inputFileName, string outputFileName, bool ascending)
+{
+    
+    char const* inFileName = inputFileName.c_str();
+    char const* outFileName = outputFileName.c_str();
+    
+    ofstream randomTestFile;
+    randomTestFile.open (inFileName);
+    
+    ofstream testFile
+    testFile.(inFileName);
 	cout << "Creating test file of Strings\n";
 	randomStrings(testFile);
 	testFile.close();
-
-	ifstream inputFile(inputFileName);
-	ofstream otemp("temp.txt");
+	
+	ifstream inputFile(inFileName);
+	ofstream otemp;
+	otemp.open("temp.txt");
 	cout<<"replacement selection\n";
 	ReplacementSelectionSort<string> sortedRuns(15, inputFile, otemp, ascending);
 	otemp.close();
-
-	cout << "checking runs\n";
-	ifstream itemp("temp.txt");
-	ofstream outputFile(outputFileName);
-	checkRuns<string> (itemp, outputFile, ascending);
+	
 }
 
 
-void randomStrings(ostream& outfile){
+void randomStrings(ostream& outfile)
+{
 
 	int strlength = 0;
 	int fileLen;
@@ -190,7 +217,8 @@ void randomStrings(ostream& outfile){
 	fileLen = rand() % (100 + rand() % 100);
 
 
-	for(unsigned int i = 0; i < fileLen; i++){
+	for(unsigned int i = 0; i < fileLen; i++)
+	{
 
 		strlength = 6;
 		char* str = (char*) malloc(strlength * (sizeof(char)));
@@ -198,7 +226,8 @@ void randomStrings(ostream& outfile){
 
 		outfile<<str<<" ";
 
-		if( i % 5 ==0 ){
+		if( i % 5 ==0 )
+		{
 			outfile<<"\n";
 		}
 
@@ -206,14 +235,16 @@ void randomStrings(ostream& outfile){
 
 }
 
-void gen_random(char *s, const int len) {
+void gen_random(char *s, const int len) 
+{
 
     static const char alphanum[] =
         "0123456789"
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         "abcdefghijklmnopqrstuvwxyz";
 
-    for (int i = 0; i < len; ++i) {
+    for (int i = 0; i < len; ++i) 
+	{
         s[i] = alphanum[rand() % (sizeof(alphanum) - 1)];
     }
 
