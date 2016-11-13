@@ -70,7 +70,7 @@ void test(string inputFileName, string outputFileName, bool direction_flag)
 	ofstream otemp;
 	otemp.open("temp.txt");
 	cout << "Running Replacement Selection Sort\n";
-    sortedRuns.initReplacementSelectionSort(15, inputFile ,otemp, direction_flag);
+    ReplacementSelectionSort<string> sortedRuns (15, inputFile ,otemp, direction_flag);
 	otemp.close();
 
 	ifstream itemp;
