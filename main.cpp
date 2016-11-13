@@ -14,20 +14,37 @@ using namespace std;
 template <typename T>
 void test(string inputFileName, string outputFileName, bool direction_flag);
 
-
 template<typename T>
 void generateTestFile(ostream& outfile);
 
 template <typename T>
 void checkRuns(istream& infile,ostream& outfile, bool direction_flag);
 
+void stringTest(string inputFileName, string outputFileName, bool ascending);
+
+void randomStrings(ostream& outfile);
+
+void gen_random(char *s, const int len);
 
 int main(){
 
     srand(2);
 
+    //test ints
+	//test<int> ("randomIntTest_in.txt","ascending_randomIntTest_out", true);
+    //test<int> ("randomIntTest_in.txt", "descending_randomIntTest_out", false);
 
-	test<int> ("randomIntTest_in.txt","ascending_randomIntTest_out", true);
+	//test doubles
+	//test<double> ("randomDoubleTest_in.txt", "descending_randomDoubleTest_out.txt", false);
+
+    //test floats
+    //test<float> ("randomfloatTest_in.txt", "ascending_randomfloatTest_out", true);
+	//test<float> ("randomfloatTest_in.txt", "descending_randomfloatTest_out", false);
+
+    //test Strings
+    stringTest ("randomStringTest_in.txt", "descending_randomStringTest_out", false);
+
+
 
 
 	return 0;
@@ -139,4 +156,61 @@ void checkRuns(istream& infile,ostream& outfile, bool direction_flag){
 			<<"\ntotal Runs: " << totalRuns
 			<<"\ntotal items: " << totalObj
 			<<"\n---------------------------------------\n\n";
+}
+
+
+void stringTest(string inputFileName, string outputFileName, bool ascending){
+
+	ofstream testFile(inputFileName);
+	cout << "Creating test file of Strings\n";
+	randomStrings(testFile);
+	testFile.close();
+
+	ifstream inputFile(inputFileName);
+	ofstream otemp("temp.txt");
+	cout<<"replacement selection\n";
+	ReplacementSelectionSort<string> sortedRuns(15, inputFile, otemp, ascending);
+	otemp.close();
+
+	cout << "checking runs\n";
+	ifstream itemp("temp.txt");
+	ofstream outputFile(outputFileName);
+	checkRuns<string> (itemp, outputFile, ascending);
+}
+
+
+void randomStrings(ostream& outfile){
+	int strlength=0;
+	int fileLen;
+
+	fileLen = rand() % (100 + rand() % 100);
+
+
+	for(unsigned int i = 0; i < fileLen; i++){
+
+		strlength = 6;
+		char* str = (char*) malloc(strlength * (sizeof(char)));
+		gen_random(str,strlength);
+
+		outfile<<str<<" ";
+
+		if( i % 5 ==0 ){
+			outfile<<"\n";
+		}
+
+	}
+
+}
+
+void gen_random(char *s, const int len) {
+    static const char alphanum[] =
+        "0123456789"
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        "abcdefghijklmnopqrstuvwxyz";
+
+    for (int i = 0; i < len; ++i) {
+        s[i] = alphanum[rand() % (sizeof(alphanum) - 1)];
+    }
+
+    s[len] = 0;
 }
