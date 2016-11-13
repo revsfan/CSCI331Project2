@@ -3,7 +3,8 @@
 #include "ReplacementSelectionSort.h"
 #include <string>
 template <typename T>
-ReplacementSelectionSort<T>::ReplacementSelectionSort(const int _size, istream& _infile, ostream& _outputfile,  const bool _sort){
+ReplacementSelectionSort<T>::ReplacementSelectionSort(const int _size, istream& _infile, ostream& _outputfile,  const bool _sort)
+{
 
 		size = _size;
 		direction_flag = _sort;
@@ -18,14 +19,16 @@ ReplacementSelectionSort<T>::ReplacementSelectionSort(const int _size, istream& 
 }
 
 template <typename T>
-T ReplacementSelectionSort<T>::initHeap(istream& infile){
+T ReplacementSelectionSort<T>::initHeap(istream& infile)
+{
 
 	T newElement;
 
 
 	infile >> newElement;
 
-	for(unsigned int i = 0; i<size && !infile.eof(); i++){
+	for(unsigned int i = 0; i<size && !infile.eof(); i++)
+	{
 
 		dualHeap[i ]= newElement;
 		leftHeapEnd = i;
@@ -37,7 +40,8 @@ T ReplacementSelectionSort<T>::initHeap(istream& infile){
 }
 
 template <typename T>
-void ReplacementSelectionSort<T>::sortPreMerge(std::istream& infile, std::ostream& outputfile){
+void ReplacementSelectionSort<T>::sortPreMerge(std::istream& infile, std::ostream& outputfile)
+{
 
 	std::vector<vector<T> >sortedLists;
 	std::vector<T> currentList;
@@ -50,7 +54,8 @@ void ReplacementSelectionSort<T>::sortPreMerge(std::istream& infile, std::ostrea
 
 	newElement = initHeap(infile);
 
-	while(!infile.eof()){
+	while(!infile.eof())
+	{
 
 		lastElement = pop();
 
@@ -58,32 +63,44 @@ void ReplacementSelectionSort<T>::sortPreMerge(std::istream& infile, std::ostrea
 		currentList.push_back(lastElement);
 
 
-		if(direction_flag){
+		if(direction_flag)
+		{
 
-			if(newElement >= lastElement){
+			if(newElement >= lastElement)
+			{
 
 				activeHeapOpen = true;
-			}else{
+			}
+			else
+			{
 
 				activeHeapOpen=false;
 			}
 
-		}else{
+		}
+		else
+		{
 
-			if(newElement <= lastElement){
+			if(newElement <= lastElement)
+			{
 
 				activeHeapOpen = true;
 
-			}else{
+			}
+			else
+			{
 
 				activeHeapOpen = false;
 			}
 		}
 
-		if(activeHeapOpen){
+		if(activeHeapOpen)
+		{
 
 					current_dualHeap_push(newElement);
-        }else{
+        }
+		else
+		{
 
 
 
@@ -91,21 +108,27 @@ void ReplacementSelectionSort<T>::sortPreMerge(std::istream& infile, std::ostrea
 			pending_dualHeap_push(newElement);
 
 
-			if(activeLeftHeap){
+			if(activeLeftHeap)
+			{
 
-				if(leftHeapStart > leftHeapEnd){
+				if(leftHeapStart > leftHeapEnd)
+				{
 					pendingFull = true;
 				}
 
-			}else{
+			}
+			else
+			{
 
-				if(rightHeapStart < rightHeapEnd){
+				if(rightHeapStart < rightHeapEnd)
+				{
 					pendingFull = true;
 				}
 
 			}
 
-			if(pendingFull){
+			if(pendingFull)
+			{
 
 				sortedLists.push_back(currentList);
 				currentList.resize(0);
@@ -119,7 +142,8 @@ void ReplacementSelectionSort<T>::sortPreMerge(std::istream& infile, std::ostrea
 
 	} //END WHILE
 
-	if(activeLeftHeap){
+	if(activeLeftHeap)
+	{
 
 		while(leftHeapStart <= leftHeapEnd){
 
@@ -127,10 +151,13 @@ void ReplacementSelectionSort<T>::sortPreMerge(std::istream& infile, std::ostrea
 			leftHeapEnd--;
 
 		}
-	}else{
+	}
+	else
+	{
 
 
-		while(rightHeapStart >= rightHeapEnd){
+		while(rightHeapStart >= rightHeapEnd)
+		{
 			currentList.push_back(pop());
 			rightHeapEnd++;
 
@@ -142,17 +169,22 @@ void ReplacementSelectionSort<T>::sortPreMerge(std::istream& infile, std::ostrea
 	swapActive();
 
 
-	if(activeLeftHeap){
+	if(activeLeftHeap)
+	{
 
-		while(leftHeapStart <= leftHeapEnd){
+		while(leftHeapStart <= leftHeapEnd)
+		{
 
 			currentList.push_back(pop());
 			leftHeapEnd--;
 
 		}
-	}else{
+	}
+	else
+	{
 
-		while(rightHeapStart >= rightHeapEnd){
+		while(rightHeapStart >= rightHeapEnd)
+		{
 
 			currentList.push_back(pop());
 			rightHeapEnd++;
@@ -163,9 +195,11 @@ void ReplacementSelectionSort<T>::sortPreMerge(std::istream& infile, std::ostrea
 	sortedLists.push_back(currentList);
 
 
-	for(int i = 0; i<sortedLists.size(); i++){
+	for(int i = 0; i<sortedLists.size(); i++)
+	{
 
-		for(int j = 0; j<sortedLists[i].size(); j++){
+		for(int j = 0; j<sortedLists[i].size(); j++)
+		{
 
 			outputfile<<sortedLists[i][j]<<" ";
 		}
@@ -176,24 +210,30 @@ void ReplacementSelectionSort<T>::sortPreMerge(std::istream& infile, std::ostrea
 }
 
 template <typename T>
-void ReplacementSelectionSort<T>::heapify(bool leftSide){
+void ReplacementSelectionSort<T>::heapify(bool leftSide)
+{
 
 	int index;
 
-	if(leftSide){
+	if(leftSide)
+	{
 
 		index = parent(leftHeapEnd, leftSide);
 
-		while(index >= leftHeapStart){
+		while(index >= leftHeapStart)
+		{
 			siftDown(index, leftSide);
 			index -= 1;
 		}
 
-	}else{
+	}
+	else
+	{
 
 		index = parent(rightHeapEnd,leftSide);
 
-		while(index<=rightHeapStart){
+		while(index<=rightHeapStart)
+		{
 
 			siftDown(index,leftSide);
 			index += 1;
@@ -202,35 +242,42 @@ void ReplacementSelectionSort<T>::heapify(bool leftSide){
 }
 
 template <typename T>
-void ReplacementSelectionSort<T>::siftUp(int index, bool leftSide){
+void ReplacementSelectionSort<T>::siftUp(int index, bool leftSide)
+{
 
 	int p = parent(index, leftSide);
 
 	int toSwap = index;
 
-	if(leftSide && direction_flag){
+	if(leftSide && direction_flag)
+	{
 
 		if((p >= leftHeapStart) && (dualHeap[index] < dualHeap[p]))
 			toSwap=p;
 	}
 
-	else if(leftSide){
+	else if(leftSide)
+	{
 
 		if((p >= leftHeapStart) && (dualHeap[index] > dualHeap[p]))
 			toSwap = p;
 	}
-	else if(direction_flag){
+	else if(direction_flag)
+	{
 
 		if((p <= rightHeapStart) && (dualHeap[index] < dualHeap[p]))
 			toSwap = p;
-	}else{
+	}
+	else
+	{
 
 		if((p <= rightHeapStart) && (dualHeap[index] > dualHeap[p]))
 			toSwap = p;
 	}
 
 
-	if(toSwap != index){
+	if(toSwap != index)
+	{
 
 		swap(index,toSwap);
 		siftUp(toSwap,leftSide);
@@ -238,7 +285,8 @@ void ReplacementSelectionSort<T>::siftUp(int index, bool leftSide){
 }
 
 template <typename T>
-void ReplacementSelectionSort<T>::siftDown(int index, bool leftSide){
+void ReplacementSelectionSort<T>::siftDown(int index, bool leftSide)
+{
 
 	int l,
         r,
@@ -248,7 +296,8 @@ void ReplacementSelectionSort<T>::siftDown(int index, bool leftSide){
 	l = left(index,leftSide);
 	r = right(index,leftSide);
 
-	if(leftSide && direction_flag){
+	if(leftSide && direction_flag)
+	{
 
 		if(l <= leftHeapEnd && dualHeap[l] < dualHeap[index])
 			toSwap = l;
@@ -259,7 +308,8 @@ void ReplacementSelectionSort<T>::siftDown(int index, bool leftSide){
 			toSwap = r;
 	}
 
-	else if(leftSide){
+	else if(leftSide)
+	{
 
 		if(l <= leftHeapEnd && dualHeap[l] > dualHeap[index])
 			toSwap = l;
@@ -269,7 +319,8 @@ void ReplacementSelectionSort<T>::siftDown(int index, bool leftSide){
 		if(r <= leftHeapEnd && dualHeap[r] > dualHeap[toSwap])
 			toSwap = r;
 	}
-	else if(direction_flag){
+	else if(direction_flag)
+	{
 
 		if(l >= rightHeapEnd && dualHeap[l] < dualHeap[index])
 			toSwap = l;
@@ -279,7 +330,8 @@ void ReplacementSelectionSort<T>::siftDown(int index, bool leftSide){
 		if(r >= rightHeapEnd && dualHeap[r] < dualHeap[toSwap])
 			toSwap = r;
 	}
-	else {
+	else 
+	{
 
 		if(l >= rightHeapEnd && dualHeap[l] > dualHeap[index])
 			toSwap = l;
@@ -290,18 +342,21 @@ void ReplacementSelectionSort<T>::siftDown(int index, bool leftSide){
 			toSwap = r;
 	}
 
-	if(toSwap != index){
+	if(toSwap != index)
+	{
 		swap(index,toSwap);
 		siftDown(toSwap, leftSide);
 	}
 }
 
 template <typename T>
-T ReplacementSelectionSort<T>::pop(){
+T ReplacementSelectionSort<T>::pop()
+{
 
 	T output;
 
-	if(activeLeftHeap){
+	if(activeLeftHeap)
+	{
 
 		output = dualHeap[leftHeapStart];
 		swap(leftHeapStart, leftHeapEnd);
@@ -309,7 +364,9 @@ T ReplacementSelectionSort<T>::pop(){
 
 		siftDown(leftHeapStart, activeLeftHeap);
 		leftHeapEnd++;
-	}else{
+	}
+	else
+	{
 
 
 		output = dualHeap[rightHeapStart];
@@ -324,14 +381,18 @@ T ReplacementSelectionSort<T>::pop(){
 }
 
 template <typename T>
-void ReplacementSelectionSort<T>::current_dualHeap_push(T entry){
+void ReplacementSelectionSort<T>::current_dualHeap_push(T entry)
+{
 
-	if(activeLeftHeap){
+	if(activeLeftHeap)
+	{
 
 		dualHeap[leftHeapEnd] = entry;
 		siftUp(leftHeapEnd, activeLeftHeap);
 
-	}else{
+	}
+	else
+	{
 
 		dualHeap[rightHeapEnd] = entry;
 		siftUp(rightHeapEnd, activeLeftHeap);
@@ -339,15 +400,18 @@ void ReplacementSelectionSort<T>::current_dualHeap_push(T entry){
 }
 
 template <typename T>
-void ReplacementSelectionSort<T>::pending_dualHeap_push(T entry){
+void ReplacementSelectionSort<T>::pending_dualHeap_push(T entry)
+{
 
-	if(activeLeftHeap){
+	if(activeLeftHeap)
+	{
 		leftHeapEnd--;
 		rightHeapEnd--;
 		dualHeap[rightHeapEnd]=entry;
 		siftUp(rightHeapEnd,!activeLeftHeap);
 	}
-	else{
+	else
+	{
 		leftHeapEnd++;
 		rightHeapEnd++;
 		dualHeap[leftHeapEnd]=entry;
@@ -356,12 +420,14 @@ void ReplacementSelectionSort<T>::pending_dualHeap_push(T entry){
 }
 
 template <typename T>
-void ReplacementSelectionSort<T>::swapActive(){
+void ReplacementSelectionSort<T>::swapActive()
+{
 
 	activeLeftHeap =! activeLeftHeap;
 }
 template <typename T>
-void ReplacementSelectionSort<T>::swap(int index1, int index2){
+void ReplacementSelectionSort<T>::swap(int index1, int index2)
+{
 
 	T temp;
 	temp = dualHeap[index1];
@@ -370,19 +436,22 @@ void ReplacementSelectionSort<T>::swap(int index1, int index2){
 }
 
 template <typename T>
-int ReplacementSelectionSort<T>::left(int index, bool leftSide){
+int ReplacementSelectionSort<T>::left(int index, bool leftSide)
+{
 
 	return (leftSide? 2 * index + 1 : rightHeapStart - (rightHeapStart-index) * 2 - 1);
 }
 
 template <typename T>
-int ReplacementSelectionSort<T>::right(int index, bool leftSide){
+int ReplacementSelectionSort<T>::right(int index, bool leftSide)
+{
 
 	return (leftSide? 2 * index + 2 : rightHeapStart - (rightHeapStart - index) * 2 - 2);
 }
 
 template <typename T>
-int ReplacementSelectionSort<T>::parent(int index, bool leftSide){
+int ReplacementSelectionSort<T>::parent(int index, bool leftSide)
+{
 
 	return (leftSide? (index - 1) / 2 : (index - rightHeapStart + 1) / 2 + rightHeapStart);
 }
