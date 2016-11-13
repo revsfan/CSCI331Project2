@@ -185,26 +185,26 @@ void checkRuns(istream& infile,ostream& outfile, bool direction_flag)
 
 void stringTest(string inputFileName, string outputFileName, bool ascending)
 {
-    
+
     char const* inFileName = inputFileName.c_str();
     char const* outFileName = outputFileName.c_str();
-    
+
     ofstream randomTestFile;
     randomTestFile.open (inFileName);
-    
-    ofstream testFile
-    testFile.(inFileName);
+
+    ofstream testFile;
+    testFile.open(inFileName);
 	cout << "Creating test file of Strings\n";
 	randomStrings(testFile);
 	testFile.close();
-	
+
 	ifstream inputFile(inFileName);
 	ofstream otemp;
 	otemp.open("temp.txt");
 	cout<<"replacement selection\n";
 	ReplacementSelectionSort<string> sortedRuns(15, inputFile, otemp, ascending);
 	otemp.close();
-	
+
 }
 
 
