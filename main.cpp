@@ -1,3 +1,18 @@
+/**
+*	@file main.cpp
+*	@author
+*	@date
+*	@brief Apply replacement selection sort to an unsorted list of records then merge them
+*
+*	The purpose of this program is to take an unsorted list of records and sort them into a
+*	single list while using a fixed amount of memory to store records. The first process is
+*	called replacement selection sort where it will fill the fixed amount of memeory then
+*	process the list and sort it to a new record. This process is repeated until all of the records
+*	from the initial list of records are all sorted. The second process is to merge the variable number
+*	of indipendant sorted lists. This will result in a single list of sorted records using a fixed amount
+*	of memeory.
+*/
+
 #include "ReplacementSelectionSort.h"
 #include <fstream>
 #include <iostream>
