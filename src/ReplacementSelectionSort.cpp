@@ -7,7 +7,7 @@
 template <typename T>
 ReplacementSelectionSort<T>::ReplacementSelectionSort(const int _size, istream& _infile, ostream& _outputfile,  const bool _sort)
 {
-    
+
         size = _size;
 		direction_flag = _sort;
 		activeLeftHeap = true;
@@ -22,7 +22,7 @@ ReplacementSelectionSort<T>::ReplacementSelectionSort(const int _size, istream& 
 template <typename T>
 ReplacementSelectionSort<T>::~ReplacementSelectionSort()
 {
-    
+
 }
 
 
@@ -58,7 +58,7 @@ void ReplacementSelectionSort<T>::sort(std::istream& infile, std::ostream& outpu
 
 	T newElement;
 	T lastElement;
-	bool pendingFull=false;
+	bool pendingFull = false;
 	bool activeHeapOpen;
 
 
@@ -111,8 +111,6 @@ void ReplacementSelectionSort<T>::sort(std::istream& infile, std::ostream& outpu
         }
 		else
 		{
-
-
 
 
 			pending_dualHeap_push(newElement);
@@ -220,7 +218,7 @@ void ReplacementSelectionSort<T>::sort(std::istream& infile, std::ostream& outpu
 
 }
 
-//heapify moves the right most parent to a leave if need be
+//heapify moves the right most parent to a leaf if need be
 template <typename T>
 void ReplacementSelectionSort<T>::heapify(bool leftSide)
 {
