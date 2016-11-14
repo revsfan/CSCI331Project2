@@ -1,18 +1,3 @@
-/**
-*	@file main.cpp
-*	@author
-*	@date
-*	@brief Apply replacement selection sort to an unsorted list of records then merge them
-*
-*	The purpose of this program is to take an unsorted list of records and sort them into a
-*	single list while using a fixed amount of memory to store records. The first process is
-*	called replacement selection sort where it will fill the fixed amount of memeory then
-*	process the list and sort it to a new record. This process is repeated until all of the records
-*	from the initial list of records are all sorted. The second process is to merge the variable number
-*	of indipendant sorted lists. This will result in a single list of sorted records using a fixed amount
-*	of memeory.
-*/
-
 #include "ReplacementSelectionSort.h"
 #include <fstream>
 #include <iostream>
@@ -87,8 +72,8 @@ void gen_random(char *s, const int len);
 *   @param multiList A 2-d vector containing sorted vectors
 */
 
-
-vector<int> mergeInt(const vector<vector<int> >& multiList);
+template <typename T>
+vector<T> mergeInt(const vector<vector<T> >& multiList);
 
 /**
 *   Applyies basic insertionsort
@@ -174,7 +159,7 @@ int main()
 
 vector<int> finalVector;
 
-finalVector = mergeInt(testVector);
+finalVector = mergeInt<int>(testVector);
 
 //BUG very small number of items are not sorted when merged. Insertion sort is very quick when most items are already sorted
 insertionSort(finalVector, finalVector.size());
@@ -210,21 +195,25 @@ void insertionSort (vector<int>& data, int n)
     }
 }
 
-
-vector<int> mergeInt(const vector<vector<int> >& multiList)
+template <typename T>
+vector<T> mergeInt(const vector<vector<T> >& multiList)
 {
 
-  vector<int> finalList;
+  vector<T> finalList;
   vector<vector<int>::const_iterator> iterators(multiList.size());
 
   // Set all iterators to the beginning of their corresponding vectors in multiList
   for (int i = 0; i < multiList.size(); ++i) iterators[i] = multiList[i].begin();
 
-  int k = 0, minValue, minValueIndex;
+  int k = 0, minValueIndex;
+  T minValue;
 
   while (1)
   {
-    minValue = INT_MAX;
+    if ( typeid(iterators[0]) == typeid(std::string) )
+        minValue = CHAR_MAX;
+    else
+        minValue = INT_MAX;
     for (int i = 0; i < iterators.size(); ++i)
 	{
       if (iterators[i] == multiList[i].end()) continue;
@@ -447,7 +436,7 @@ void merge(int a[], int startIndex, int endIndex)
         int *b = new int [size]();
 
         int i = startIndex;
-        int mid = (startIndex + endIndex)/2;
+        int mid = (startIndex + (startIndex + endIndex))/2;
         int k = 0;
         int j = mid + 1;
 
