@@ -1,5 +1,6 @@
 /**
-*   A class to apply Replacement Selection Sort to a file of unsorted items
+*	@file ReplacementSelectionSort.h
+*	@brief A class to apply Replacement Selection Sort to a file of unsorted items
 */
 
 #ifndef REPLACEMENT_SELECTION_SORT
