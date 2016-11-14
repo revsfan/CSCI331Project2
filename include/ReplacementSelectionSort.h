@@ -10,48 +10,50 @@
 
 using namespace std;
 template <class T>
-class ReplacementSelectionSort{
-private:
+class ReplacementSelectionSort
+{
+    public:
+        ReplacementSelectionSort(const int _size, istream& _infile, ostream& _outputfile,  const bool _sort);
+        virtual ~ReplacementSelectionSort();
+
+    protected:
+    private:
+        bool activeLeftHeap;
+        bool direction_flag;
+        int size;
+        int leftHeapStart;
+        int leftHeapEnd;
+        int rightHeapStart;
+        int rightHeapEnd;
 
 
-	bool activeLeftHeap,
-         direction_flag;
-
-	int size,
-        leftHeapStart,
-        leftHeapEnd,
-        rightHeapStart,
-        rightHeapEnd;
+		vector<T> dualHeap;
 
 
-	vector<T> dualHeap;
+		void sort(istream& infile, ostream& outputfile);
+		void heapify (bool leftSide);
+		void siftUp(int index, bool leftSide);
+		void siftDown (int index, bool leftSide);
 
 
+		int left(int index, bool leftSide);
+		int right(int index, bool leftSide);
+		int parent(int index, bool leftSide);
+		void swap(int index1, int index2);
+		
+		
+		T pop();
+		T initHeap(istream& infile);
+		
+		
+		void current_dualHeap_push(const T entry);
+		void pending_dualHeap_push (const T entry);
+		void swapActive();
 
-	void heapify (bool leftSide);
-	void siftUp(int index, bool leftSide);
-	void siftDown (int index, bool leftSide);
+		//void printHeap();//prints the dualHeap to cout for monitoring purposes
 
+		void sortPreMerge(istream& infile,ostream& outputfile);
 
-	int left(int index, bool leftSide);
-	int right(int index, bool leftSide);
-	int parent(int index, bool leftSide);
-	void swap(int index1, int index2);
-
-
-	T pop();
-	T initHeap(istream& infile);
-
-
-	void current_dualHeap_push(const T entry);
-	void pending_dualHeap_push (const T entry);
-	void swapActive();
-
-
-	void sort(istream& infile, ostream& outputfile);
-
-public:
-
-	ReplacementSelectionSort(const int _size = 10, istream& _infile = new ifstream("input.txt"), ostream& _outputfile = cout,  const bool _sort = true);
 };
-#endif
+
+#endif // REPLACEMENTSELECTIONSORT_H
