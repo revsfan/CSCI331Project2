@@ -11,6 +11,7 @@
 #include <queue>
 #include <time.h>
 #include <algorithm>
+#include <iterator>
 
 using namespace std;
 
@@ -36,9 +37,15 @@ int stringToNumber(string inString);
 
 vector<int> mergeInt(const vector<vector<int> >& multiList);
 
+
+
+
+
+
+
 int main(){
 
-    srand(33);
+    srand(8);
 
     //test ints
 	test<int> ("randomIntTest_in.txt","ascending_randomIntTest_out", true);
@@ -88,6 +95,9 @@ int main(){
         }
 
     }
+
+
+
 
 
  cout << endl << endl << endl;
@@ -203,7 +213,7 @@ void checkRuns(istream& infile, ostream& outfile, bool direction_flag){
 
 	int totalObj = 0;
 
-	int totalRuns = 0;
+	int totalRuns = -1;
 
 	bool isSorted = true;
 
@@ -227,9 +237,10 @@ void checkRuns(istream& infile, ostream& outfile, bool direction_flag){
 
 		while(!stringStream.eof()){
 
-			stringStream>>curObj;
+			stringStream >> curObj;
 			runLength++;
 			totalObj++;
+
 			if(direction_flag){
 
 				if(curObj < prevObj){
@@ -249,13 +260,12 @@ void checkRuns(istream& infile, ostream& outfile, bool direction_flag){
 		}
 	}
 
-	outfile <<"\n\n-----------------------------------\n"
+	outfile
 			<<"averageRunLength = " << totalObj / totalRuns
 			<<"\nthe file is sorted: "<< (isSorted? "True" : "False")
 			<<"\nMax run length: " << maxRunLength
 			<<"\ntotal Runs: " << totalRuns
-			<<"\ntotal items: " << totalObj
-			<<"\n---------------------------------------\n\n";
+			<<"\ntotal items: " << totalObj;
 }
 
 
@@ -295,8 +305,8 @@ void randomStrings(ostream& outfile){
 
 		outfile<<str<<" ";
 
-		if( i % 5 ==0 ){
-			outfile<<"\n";
+		if( i % 5 == 0 ){
+			outfile << "\n";
 		}
 
 	}
@@ -317,35 +327,32 @@ void gen_random(char *s, const int len) {
     s[len] = 0;
 }
 
-void merge(int a[], int startIndex, int endIndex)
-{
+void merge(int a[], int startIndex, int endIndex){
 
-int size = (endIndex - startIndex) + 1;
-int *b = new int [size]();
+        int size = (endIndex - startIndex) + 1;
+        int *b = new int [size]();
 
-int i = startIndex;
-int mid = (startIndex + endIndex)/2;
-int k = 0;
-int j = mid + 1;
+        int i = startIndex;
+        int mid = (startIndex + endIndex)/2;
+        int k = 0;
+        int j = mid + 1;
 
-while (k < size)
-{
-    if((i<=mid) && (a[i] < a[j]))
-    {
-        b[k++] = a[i++];
+    while (k < size){
+
+        if((i <= mid) && (a[i] < a[j])){
+            b[k++] = a[i++];
+
+        }else{
+            b[k++] = a[j++];
+        }
+
     }
-    else
-    {
-        b[k++] = a[j++];
+
+    for(k=0; k < size; k++){
+
+        a[startIndex+k] = b[k];
     }
 
-}
-
-for(k=0; k < size; k++)
-{
-    a[startIndex+k] = b[k];
-}
-
-delete []b;
+    delete []b;
 
 }
