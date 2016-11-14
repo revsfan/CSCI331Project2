@@ -37,6 +37,7 @@ int stringToNumber(string inString);
 
 vector<int> mergeInt(const vector<vector<int> >& multiList);
 
+void insertionSort (vector<int>& data, int n);
 
 
 
@@ -86,6 +87,7 @@ int main(){
     }
 
 
+
     for(int i = 0; i < testVector.size(); i++){
 
         for (int j = 0; j < testVector[i].size(); j++){
@@ -100,6 +102,7 @@ int main(){
 
 
 
+
  cout << endl << endl << endl;
 
 
@@ -109,6 +112,9 @@ vector<int> finalVector;
 
 finalVector = mergeInt(testVector);
 
+//BUG very small number of items are not sorted when merged. Insertion sort is very quick when most items are already sorted
+insertionSort(finalVector, finalVector.size());
+
     for(int i = 0; i < finalVector.size(); i++){
 
         cout << finalVector[i] << endl;
@@ -117,8 +123,24 @@ finalVector = mergeInt(testVector);
 	return 0;
 }
 
+void insertionSort (vector<int>& data, int n){
 
+    int i, j, tmp;
 
+     for (i = 1; i < n; i++){
+
+         j = i;
+         tmp = data[i];
+
+         while (j > 0 && tmp < data[j - 1]){
+
+               data[j] = data[j - 1];
+               j--;
+         }
+
+         data[j] = tmp;
+    }
+}
 
 
 vector<int> mergeInt(const vector<vector<int> >& multiList) {
