@@ -6,7 +6,6 @@
 #include <random>
 #include <cmath>
 #include <sstream>
-//#include <conio.h>
 #include <stdio.h>
 #include <queue>
 #include <time.h>
@@ -16,27 +15,71 @@
 
 using namespace std;
 
+
+/**
+*   Function to test only the selection sort process
+*   @param inputFileName The placeholder for the file for input. This can contain any data because it will be overwritten
+*   @param outputFileName The output file
+*   @param direction_flag True = sort ascending
+*/
+
 template <typename T>
 void test(string inputFileName, string outputFileName, bool direction_flag);
 
+/**
+*   Function to randomly generage numbers to a file
+*   @param outfile File that will hold the randomly generated numbers
+*/
+
 template<typename T>
 void generateTestFile(ostream& outfile);
+/**
+*   Evaluate various information about the selection sort after the selection sort process is complete
+*   @param infile input file
+*   @param outfile output file
+*   @param direction_flag True = ascending
+*/
 
 template <typename T>
-void checkRuns(istream& infile,ostream& outfile, bool direction_flag);
+void checkRuns(istream& infile, ostream& outfile, bool direction_flag);
+
+/**
+*   Specific function to apply replacement selection sort on strings
+*   @param inputFileName input file to be tested
+*   @param outputFileName output file
+*   @param ascending True = ascending
+*/
 
 void stringTest(string inputFileName, string outputFileName, bool ascending);
 
+/**
+*   Generates random strings
+*   @param outfile output file
+*/
+
 void randomStrings(ostream& outfile);
 
+
+/**
+*   Generates random characters
+*   @param s output character
+*   @param len length of c-string
+*/
 void gen_random(char *s, const int len);
 
-template <typename T>
-void makeVector(std::vector < std::vector<T> > listVector);
+/**
+*   Merge a 2d-vector containing sorted vectors
+*   @param multiList A 2-d vector containing sorted vectors
+*/
 
-int stringToNumber(string inString);
 
 vector<int> mergeInt(const vector<vector<int> >& multiList);
+
+/**
+*   Applyies basic insertionsort
+*   @param data vector to be sorted
+*   @param n size of the vector
+*/
 
 void insertionSort (vector<int>& data, int n);
 
@@ -153,7 +196,7 @@ void insertionSort (vector<int>& data, int n)
 }
 
 
-vector<int> mergeInt(const vector<vector<int> >& multiList) 
+vector<int> mergeInt(const vector<vector<int> >& multiList)
 {
 
   vector<int> finalList;
@@ -164,14 +207,14 @@ vector<int> mergeInt(const vector<vector<int> >& multiList)
 
   int k = 0, minValue, minValueIndex;
 
-  while (1) 
+  while (1)
   {
     minValue = INT_MAX;
     for (int i = 0; i < iterators.size(); ++i)
 	{
       if (iterators[i] == multiList[i].end()) continue;
 
-      if (*iterators[i] < minValue) 
+      if (*iterators[i] < minValue)
 	  {
         minValue = *iterators[i];
         minValueIndex = i;
@@ -366,7 +409,7 @@ void randomStrings(ostream& outfile)
 
 }
 
-void gen_random(char *s, const int len) 
+void gen_random(char *s, const int len)
 {
 
     static const char alphanum[] =
@@ -374,7 +417,7 @@ void gen_random(char *s, const int len)
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         "abcdefghijklmnopqrstuvwxyz";
 
-    for (int i = 0; i < len; ++i) 
+    for (int i = 0; i < len; ++i)
 	{
         s[i] = alphanum[rand() % (sizeof(alphanum) - 1)];
     }
