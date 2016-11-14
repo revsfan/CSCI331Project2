@@ -6,12 +6,13 @@
 #include <random>
 #include <cmath>
 #include <sstream>
-#include <conio.h>
+//#include <conio.h>
 #include <stdio.h>
 #include <queue>
 #include <time.h>
 #include <algorithm>
 #include <iterator>
+#include <climits>
 
 using namespace std;
 
@@ -44,7 +45,8 @@ void insertionSort (vector<int>& data, int n);
 
 
 
-int main(){
+int main()
+{
 
     srand(8);
 
@@ -71,14 +73,16 @@ int main(){
     string line;
 
 
-    while(getline(inFile, line, ' ')){
+    while(getline(inFile, line, ' '))
+	{
 
         std::stringstream ss(line);
 
         std::vector<int> numbers;
         std::string in_line;
         int temp;
-        while(getline (ss, in_line)){
+        while(getline (ss, in_line))
+		{
             std::stringstream iss(in_line);
             iss >> temp;
             numbers.push_back(temp);
@@ -88,9 +92,11 @@ int main(){
 
 
 
-    for(int i = 0; i < testVector.size(); i++){
+    for(int i = 0; i < testVector.size(); i++)
+	{
 
-        for (int j = 0; j < testVector[i].size(); j++){
+        for (int j = 0; j < testVector[i].size(); j++)
+		{
 
         cout << testVector[i][j];
 
@@ -115,7 +121,8 @@ finalVector = mergeInt(testVector);
 //BUG very small number of items are not sorted when merged. Insertion sort is very quick when most items are already sorted
 insertionSort(finalVector, finalVector.size());
 
-    for(int i = 0; i < finalVector.size(); i++){
+    for(int i = 0; i < finalVector.size(); i++)
+	{
 
         cout << finalVector[i] << endl;
     }
@@ -123,16 +130,19 @@ insertionSort(finalVector, finalVector.size());
 	return 0;
 }
 
-void insertionSort (vector<int>& data, int n){
+void insertionSort (vector<int>& data, int n)
+{
 
     int i, j, tmp;
 
-     for (i = 1; i < n; i++){
+     for (i = 1; i < n; i++)
+	 {
 
          j = i;
          tmp = data[i];
 
-         while (j > 0 && tmp < data[j - 1]){
+         while (j > 0 && tmp < data[j - 1])
+		 {
 
                data[j] = data[j - 1];
                j--;
@@ -143,7 +153,8 @@ void insertionSort (vector<int>& data, int n){
 }
 
 
-vector<int> mergeInt(const vector<vector<int> >& multiList) {
+vector<int> mergeInt(const vector<vector<int> >& multiList) 
+{
 
   vector<int> finalList;
   vector<vector<int>::const_iterator> iterators(multiList.size());
@@ -153,12 +164,15 @@ vector<int> mergeInt(const vector<vector<int> >& multiList) {
 
   int k = 0, minValue, minValueIndex;
 
-  while (1) {
+  while (1) 
+  {
     minValue = INT_MAX;
-    for (int i = 0; i < iterators.size(); ++i){
+    for (int i = 0; i < iterators.size(); ++i)
+	{
       if (iterators[i] == multiList[i].end()) continue;
 
-      if (*iterators[i] < minValue) {
+      if (*iterators[i] < minValue) 
+	  {
         minValue = *iterators[i];
         minValueIndex = i;
       }
@@ -175,7 +189,8 @@ vector<int> mergeInt(const vector<vector<int> >& multiList) {
 
 
 template <typename T>
-void test(string inputFileName, string outputFileName, bool direction_flag){
+void test(string inputFileName, string outputFileName, bool direction_flag)
+{
 
 	ofstream randomTestFile(inputFileName);
 
@@ -203,20 +218,23 @@ void test(string inputFileName, string outputFileName, bool direction_flag){
 }
 
 template<typename T>
-void generateTestFile(ostream& outfile){
+void generateTestFile(ostream& outfile)
+{
 
 	int strlength;
 	int fileLen;
 	fileLen = rand() % (rand() % 1000);
 
-	for(int i = 0; i < fileLen; i++){
+	for(int i = 0; i < fileLen; i++)
+	{
 
 		strlength = 1 + rand()% 3;
 
 		T num = rand() % (int)(pow(10,strlength));
 
 		outfile << num <<" ";
-		if(i % 5 == 0){
+		if(i % 5 == 0)
+		{
 			outfile << "\n";
 			}
 
@@ -225,7 +243,8 @@ void generateTestFile(ostream& outfile){
 
 
 template <typename T>
-void checkRuns(istream& infile, ostream& outfile, bool direction_flag){
+void checkRuns(istream& infile, ostream& outfile, bool direction_flag)
+{
 
 
 	int runLength = 0;
@@ -246,7 +265,8 @@ void checkRuns(istream& infile, ostream& outfile, bool direction_flag){
 
 	ofstream outClean("out.txt");
 
-	while(getline(infile, curLine)){
+	while(getline(infile, curLine))
+	{
 
 		runLength = 0;
 		outfile << curLine << "\n";
@@ -257,27 +277,34 @@ void checkRuns(istream& infile, ostream& outfile, bool direction_flag){
 		runLength++;
 		totalObj++;
 
-		while(!stringStream.eof()){
+		while(!stringStream.eof())
+		{
 
 			stringStream >> curObj;
 			runLength++;
 			totalObj++;
 
-			if(direction_flag){
+			if(direction_flag)
+			{
 
-				if(curObj < prevObj){
+				if(curObj < prevObj)
+				{
 
 					isSorted = false;
 				}
-			}else{
+			}
+			else
+			{
 
-				if(curObj > prevObj){
+				if(curObj > prevObj)
+				{
 					isSorted = false;
 				}
 
 			}
 		}
-		if(runLength > maxRunLength){
+		if(runLength > maxRunLength)
+		{
 			maxRunLength = runLength;
 		}
 	}
@@ -291,7 +318,8 @@ void checkRuns(istream& infile, ostream& outfile, bool direction_flag){
 }
 
 
-void stringTest(string inputFileName, string outputFileName, bool ascending){
+void stringTest(string inputFileName, string outputFileName, bool ascending)
+{
 
 	ofstream testFile(inputFileName);
 	cout << "Creating test file of Strings\n";
@@ -311,7 +339,8 @@ void stringTest(string inputFileName, string outputFileName, bool ascending){
 }
 
 
-void randomStrings(ostream& outfile){
+void randomStrings(ostream& outfile)
+{
 
 	int strlength = 0;
 	int fileLen;
@@ -319,7 +348,8 @@ void randomStrings(ostream& outfile){
 	fileLen = rand() % (100 + rand() % 100);
 
 
-	for(unsigned int i = 0; i < fileLen; i++){
+	for(unsigned int i = 0; i < fileLen; i++)
+	{
 
 		strlength = 6;
 		char* str = (char*) malloc(strlength * (sizeof(char)));
@@ -327,7 +357,8 @@ void randomStrings(ostream& outfile){
 
 		outfile<<str<<" ";
 
-		if( i % 5 == 0 ){
+		if( i % 5 == 0 )
+		{
 			outfile << "\n";
 		}
 
@@ -335,21 +366,24 @@ void randomStrings(ostream& outfile){
 
 }
 
-void gen_random(char *s, const int len) {
+void gen_random(char *s, const int len) 
+{
 
     static const char alphanum[] =
         "0123456789"
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         "abcdefghijklmnopqrstuvwxyz";
 
-    for (int i = 0; i < len; ++i) {
+    for (int i = 0; i < len; ++i) 
+	{
         s[i] = alphanum[rand() % (sizeof(alphanum) - 1)];
     }
 
     s[len] = 0;
 }
 
-void merge(int a[], int startIndex, int endIndex){
+void merge(int a[], int startIndex, int endIndex)
+{
 
         int size = (endIndex - startIndex) + 1;
         int *b = new int [size]();
@@ -359,18 +393,23 @@ void merge(int a[], int startIndex, int endIndex){
         int k = 0;
         int j = mid + 1;
 
-    while (k < size){
+    while (k < size)
+	{
 
-        if((i <= mid) && (a[i] < a[j])){
+        if((i <= mid) && (a[i] < a[j]))
+		{
             b[k++] = a[i++];
 
-        }else{
+        }
+		else
+		{
             b[k++] = a[j++];
         }
 
     }
 
-    for(k=0; k < size; k++){
+    for(k=0; k < size; k++)
+	{
 
         a[startIndex+k] = b[k];
     }
