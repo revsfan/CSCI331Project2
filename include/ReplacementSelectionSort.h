@@ -1,6 +1,6 @@
-#ifndef REPLACEMENTSELECTIONSORT_H
-#define REPLACEMENTSELECTIONSORT_H
 
+#ifndef REPLACEMENT_SELECTION_SORT
+#define REPLACEMENT_SELECTION_SORT
 #include <vector>
 #include <iostream>
 #include <fstream>
@@ -10,40 +10,24 @@
 
 using namespace std;
 template <class T>
-class ReplacementSelectionSort
-{
-    public:
-        ReplacementSelectionSort(const int _size, istream& _infile, ostream& _outputfile,  const bool _sort);
-        virtual ~ReplacementSelectionSort();
-        bool GetactiveLeftHeap() { return activeLeftHeap; }
-        void SetactiveLeftHeap(bool val) { activeLeftHeap = val; }
-        bool Getdirection_flag() { return direction_flag; }
-        void Setdirection_flag(bool val) { direction_flag = val; }
-        int Getsize() { return size; }
-        void Setsize(int val) { size = val; }
-        int GetleftHeapStart() { return leftHeapStart; }
-        void SetleftHeapStart(int val) { leftHeapStart = val; }
-        int GetleftHeapEnd() { return leftHeapEnd; }
-        void SetleftHeapEnd(int val) { leftHeapEnd = val; }
-        int GetrightHeapStart() { return rightHeapStart; }
-        void SetrightHeapStart(int val) { rightHeapStart = val; }
-        int GetrightHeapEnd() { return rightHeapEnd; }
-        void SetrightHeapEnd(int val) { rightHeapEnd = val; }
-    protected:
-    private:
-        bool activeLeftHeap;
-        bool direction_flag;
-        int size;
-        int leftHeapStart;
-        int leftHeapEnd;
-        int rightHeapStart;
-        int rightHeapEnd;
+class ReplacementSelectionSort{
+private:
+
+
+	bool activeLeftHeap,
+         direction_flag;
+
+	int size,
+        leftHeapStart,
+        leftHeapEnd,
+        rightHeapStart,
+        rightHeapEnd;
 
 
 	vector<T> dualHeap;
 
 
-    void sort(istream& infile, ostream& outputfile);
+
 	void heapify (bool leftSide);
 	void siftUp(int index, bool leftSide);
 	void siftDown (int index, bool leftSide);
@@ -63,10 +47,11 @@ class ReplacementSelectionSort
 	void pending_dualHeap_push (const T entry);
 	void swapActive();
 
-	//void printHeap();//prints the dualHeap to cout for monitoring purposes
 
-	void sortPreMerge(istream& infile,ostream& outputfile);
+	void sort(istream& infile, ostream& outputfile);
 
+public:
+
+	ReplacementSelectionSort(const int _size = 10, istream& _infile = new ifstream("input.txt"), ostream& _outputfile = cout,  const bool _sort = true);
 };
-
-#endif // REPLACEMENTSELECTIONSORT_H
+#endif
