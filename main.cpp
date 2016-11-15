@@ -83,7 +83,7 @@ int main()
     srand(8);
 
     //test ints
-	test<int> ("randomIntTest_in.txt","ascending_randomIntTest_out", true);
+	//test<int> ("randomIntTest_in.txt","ascending_randomIntTest_out", true);
     //test<int> ("randomIntTest_in.txt", "descending_randomIntTest_out", false);
 
 	//test doubles
@@ -94,7 +94,9 @@ int main()
 	//test<float> ("randomfloatTest_in.txt", "descending_randomfloatTest_out", false);
 
     //test Strings
-    //stringTest ("randomStringTest_in.txt", "descending_randomStringTest_out", false);
+    stringTest ("randomStringTest_in.txt", "descending_randomStringTest_out", false);
+
+
 return 0;
 }
 
@@ -231,7 +233,7 @@ void checkRuns(istream& infile, ostream& outfile, bool direction_flag)
 			<<"averageRunLength = " << totalObj / totalRuns
 			<<"\nthe file is sorted: "<< (isSorted? "True" : "False")
 			<<"\nMax run length: " << maxRunLength
-			<<"\nMin run length: " << minRunLength - 1;
+			<<"\nMin run length: " << minRunLength - 1
 			<<"\ntotal Runs: " << totalRuns
 			<<"\ntotal items: " << totalObj;
 }
@@ -270,11 +272,11 @@ void randomStrings(ostream& outfile)
 	for(unsigned int i = 0; i < fileLen; i++)
 	{
 
-		strlength = 6;
+		strlength = 2;
 		char* str = (char*) malloc(strlength * (sizeof(char)));
 		gen_random(str,strlength);
 
-		outfile<<str<<" ";
+		outfile << str << " ";
 
 		if( i % 5 == 0 )
 		{
@@ -289,7 +291,7 @@ void gen_random(char *s, const int len)
 {
 
     static const char alphanum[] =
-        "0123456789"
+
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         "abcdefghijklmnopqrstuvwxyz";
 
