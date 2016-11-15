@@ -94,10 +94,10 @@ class ReplacementSelectionSort
 		int right(int index, bool leftSide);
 
 		/**
-		*   Return parent idicie of a given element
+		*   Return parent indicie of a given element
 		*   @param index Index of a given element
 		*   @param leftSide which side of the dual heap to loo at
-		*   @return Return parent indie of a given element
+		*   @return Return parent indicie of a given element
 		*/
 		int parent(int index, bool leftSide);
 

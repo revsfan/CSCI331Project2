@@ -36,7 +36,7 @@ T ReplacementSelectionSort<T>::initHeap(istream& infile)
 
 	infile >> newElement;
 
-	for(unsigned int i = 0; i<size && !infile.eof(); i++)
+	for(int i = 0; i < size && !infile.eof(); i++)
 	{
 
 		dualHeap[i ]= newElement;
@@ -204,7 +204,7 @@ void ReplacementSelectionSort<T>::sort(std::istream& infile, std::ostream& outpu
 	sortedLists.push_back(currentList);
 
 
-	for(int i = 0; i<sortedLists.size(); i++)
+	for(int i = 0; i < sortedLists.size(); i++)
 	{
 
 		for(int j = 0; j<sortedLists[i].size(); j++)

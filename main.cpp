@@ -72,17 +72,6 @@ void gen_random(char *s, const int len);
 *   @param multiList A 2-d vector containing sorted vectors
 */
 
-template <typename T>
-vector<T> mergeInt(const vector<vector<T> >& multiList);
-
-/**
-*   Applyies basic insertionsort
-*   @param data vector to be sorted
-*   @param n size of the vector
-*/
-
-void insertionSort (vector<int>& data, int n);
-
 
 
 
@@ -106,134 +95,8 @@ int main()
 
     //test Strings
     //stringTest ("randomStringTest_in.txt", "descending_randomStringTest_out", false);
-
-
-
-
-    std::vector < std::vector<int> > testVector;
-
-    ifstream inFile("out.txt");
-    string line;
-
-
-    while(getline(inFile, line, ' '))
-	{
-
-        std::stringstream ss(line);
-
-        std::vector<int> numbers;
-        std::string in_line;
-        int temp;
-        while(getline (ss, in_line))
-		{
-            std::stringstream iss(in_line);
-            iss >> temp;
-            numbers.push_back(temp);
-        }
-        testVector.push_back(numbers);
-    }
-
-
-
-    for(int i = 0; i < testVector.size(); i++)
-	{
-
-        for (int j = 0; j < testVector[i].size(); j++)
-		{
-
-        cout << testVector[i][j];
-
-        }
-
-    }
-
-
-
-
-
-
- cout << endl << endl << endl;
-
-
-
-
-vector<int> finalVector;
-
-finalVector = mergeInt<int>(testVector);
-
-//BUG very small number of items are not sorted when merged. Insertion sort is very quick when most items are already sorted
-insertionSort(finalVector, finalVector.size());
-
-    for(int i = 0; i < finalVector.size(); i++)
-	{
-
-        cout << finalVector[i] << endl;
-    }
-
-	return 0;
+return 0;
 }
-
-void insertionSort (vector<int>& data, int n)
-{
-
-    int i, j, tmp;
-
-     for (i = 1; i < n; i++)
-	 {
-
-         j = i;
-         tmp = data[i];
-
-         while (j > 0 && tmp < data[j - 1])
-		 {
-
-               data[j] = data[j - 1];
-               j--;
-         }
-
-         data[j] = tmp;
-    }
-}
-
-template <typename T>
-vector<T> mergeInt(const vector<vector<T> >& multiList)
-{
-
-  vector<T> finalList;
-  vector<vector<int>::const_iterator> iterators(multiList.size());
-
-  // Set all iterators to the beginning of their corresponding vectors in multiList
-  for (int i = 0; i < multiList.size(); ++i) iterators[i] = multiList[i].begin();
-
-  int k = 0, minValueIndex;
-  T minValue;
-
-  while (1)
-  {
-    if ( typeid(iterators[0]) == typeid(std::string) )
-        minValue = CHAR_MAX;
-    else
-        minValue = INT_MAX;
-    for (int i = 0; i < iterators.size(); ++i)
-	{
-      if (iterators[i] == multiList[i].end()) continue;
-
-      if (*iterators[i] < minValue)
-	  {
-        minValue = *iterators[i];
-        minValueIndex = i;
-      }
-    }
-
-    iterators[minValueIndex]++;
-
-    if (minValue == INT_MAX) break;
-    finalList.push_back(minValue);
-  }
-
-  return finalList;
-}
-
 
 template <typename T>
 void test(string inputFileName, string outputFileName, bool direction_flag)
@@ -275,13 +138,16 @@ void generateTestFile(ostream& outfile)
 	for(int i = 0; i < fileLen; i++)
 	{
 
-		strlength = 1 + rand()% 3;
+		strlength = 2;
 
-		T num = rand() % (int)(pow(10,strlength));
+		T num = (rand() % 89) + 10;
 
-		outfile << num <<" ";
+
+		outfile << num << " ";
+
 		if(i % 5 == 0)
 		{
+
 			outfile << "\n";
 			}
 
@@ -295,13 +161,15 @@ void checkRuns(istream& infile, ostream& outfile, bool direction_flag)
 
 
 	int runLength = 0;
+	int minLength = 0;
 
 	int maxRunLength = 0;
+	int minRunLength = 0;
 
 
 	int totalObj = 0;
 
-	int totalRuns = -1;
+	int totalRuns = 0;
 
 	bool isSorted = true;
 
@@ -354,12 +222,16 @@ void checkRuns(istream& infile, ostream& outfile, bool direction_flag)
 		{
 			maxRunLength = runLength;
 		}
+		if(runLength < maxRunLength){
+            minRunLength = runLength;
+		}
 	}
 
 	outfile
 			<<"averageRunLength = " << totalObj / totalRuns
 			<<"\nthe file is sorted: "<< (isSorted? "True" : "False")
 			<<"\nMax run length: " << maxRunLength
+			<<"\nMin run length: " << minRunLength - 1;
 			<<"\ntotal Runs: " << totalRuns
 			<<"\ntotal items: " << totalObj;
 }
