@@ -7,7 +7,8 @@
 using namespace std;
 int main()
 {
-	/*
+	///*
+	
 	vector<string> first = {"a","b","c"};
 	vector<string> second = {"d","e","f"};
 	vector<string> third = {"g","h","i"};
@@ -23,8 +24,9 @@ int main()
 	
 	std::priority_queue<TournamentSort<string>::Node, 		
 	std::vector<TournamentSort<string>::Node>,TournamentSort<string>::compare> 		PQ;
-	PQ = tournament.initPQ(PQ, listOfLists);
-	*/
+	//*/
+	//PQ = tournament.initPQ(PQ, listOfLists);
+	/*
 	vector<int> first = {1,2,3,4,5,6,7,8,9};
 	vector<int> second = {21,22,23,24,25,26,27,28,29};
 	vector<int> third = {31,32,33,34,35,36,37,38,39};
@@ -40,11 +42,13 @@ int main()
 	
 	std::priority_queue<TournamentSort<int>::Node, 		
 	std::vector<TournamentSort<int>::Node>,TournamentSort<int>::compare> 		PQ;
+	//PQ = tournament.initPQ(PQ, listOfLists);
+	*/
+	cout<<"about to initialize\n"<<std::flush;
 	PQ = tournament.initPQ(PQ, listOfLists);
-
-	
+	cout<<"about to sortmerge\n"<<std::flush;
 	tournament.pushToFinal(PQ, final, listOfLists);
-	cout<<" about to write\n"<<std::flush;
+	cout<<"about to write\n"<<std::flush;
 	ofstream myfile;
  	myfile.open ("output.txt");
 	for(int i = 0; i < tournament.finalVector.size()-1; i++)
