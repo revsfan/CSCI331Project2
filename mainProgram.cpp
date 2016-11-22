@@ -81,6 +81,8 @@ void gen_random(char *s, const int len);
 
 int main()
 {
+    srand(33);
+
 	string inputFileName = "randomStringTest_in.txt";
 	string outputFileName = "descending_randomStringTest_out";
 	cout << "starting\n"<<std::flush;
@@ -198,7 +200,7 @@ vector<vector<T>> checkRuns(istream& infile, ostream& outfile, bool direction_fl
 
 	int maxRunLength = 0;
 	int minRunLength = 0;
-
+    int outRunNumber;
 
 	int totalObj = 0;
 
@@ -283,8 +285,10 @@ vector<vector<T>> checkRuns(istream& infile, ostream& outfile, bool direction_fl
             minRunLength = size;
 		}
 
-		if(prevRN != rn)
-            myfile << "rn:  " << rn << "  size:  " << size << "  runNum:  " << runNum << "\n";
+		if(prevRN != rn){
+                myfile << "rn:  " << rn << "  size:  " << size << "  runNum:  " << runNum << "\n";
+                outRunNumber = runNum;
+		}
 
 		prevRN = rn;
 
@@ -294,11 +298,11 @@ vector<vector<T>> checkRuns(istream& infile, ostream& outfile, bool direction_fl
 
 
 	outfile
-			<<"averageRunLength = " << totalObj / (  totalRuns - 1)
+			<<"averageRunLength = " << totalObj / (  outRunNumber)
 			<<"\nthe file is sorted: "<< (isSorted? "True" : "False")
 			<<"\nMax run length: " << maxRunLength - 1
 			<<"\nMin run length: " << minRunLength
-			<<"\ntotal Runs: " << totalRuns - 1
+			<<"\ntotal Runs: " << outRunNumber
 			<<"\ntotal items: " << totalObj;
 
 	cout << "returning the list\n"<<std::flush;
