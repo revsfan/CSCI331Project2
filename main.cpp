@@ -175,12 +175,18 @@ void checkRuns(istream& infile, ostream& outfile, bool direction_flag)
 
 	bool isSorted = true;
 
+	int rn = 0;
+	int size = 0;
+	int runNum = 0;
+
 	T prevObj;
 	T curObj;
 
 	string curLine;
 
 	ofstream outClean("out.txt");
+	ofstream myfile;
+        myfile.open("rrnFile.text");
 
 	while(getline(infile, curLine))
 	{
@@ -194,12 +200,17 @@ void checkRuns(istream& infile, ostream& outfile, bool direction_flag)
 		runLength++;
 		totalObj++;
 
+		runNum++;
+
 		while(!stringStream.eof())
 		{
 
 			stringStream >> curObj;
 			runLength++;
 			totalObj++;
+			rn = totalObj;
+			size = runLength-1;
+
 
 			if(direction_flag)
 			{
@@ -227,8 +238,9 @@ void checkRuns(istream& infile, ostream& outfile, bool direction_flag)
 		if(runLength < maxRunLength){
             minRunLength = runLength;
 		}
-	}
+myfile << "rn:  " << rn << "  size:  " << size << "  runNum:  " << runNum << "\n";
 
+	}
 	outfile
 			<<"averageRunLength = " << totalObj / totalRuns
 			<<"\nthe file is sorted: "<< (isSorted? "True" : "False")
@@ -236,6 +248,7 @@ void checkRuns(istream& infile, ostream& outfile, bool direction_flag)
 			<<"\nMin run length: " << minRunLength - 1
 			<<"\ntotal Runs: " << totalRuns
 			<<"\ntotal items: " << totalObj;
+
 }
 
 
