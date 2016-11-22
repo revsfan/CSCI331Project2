@@ -1,0 +1,65 @@
+# depslib dependency file v1.0
+1479835230 source:c:\users\stevecaboose\desktop\test\src\replacementselectionsort.cpp
+	"ReplacementSelectionSort.h"
+	<string>
+
+1479835230 c:\users\stevecaboose\desktop\test\include\replacementselectionsort.h
+	<vector>
+	<iostream>
+	<fstream>
+	<functional>
+	<typeinfo>
+
+1479835640 source:c:\users\stevecaboose\desktop\test\mainprogram.cpp
+	"ReplacementSelectionSort.h"
+	"ReplacementSelectionSort.cpp"
+	"TournamentSort.h"
+	"mainDriver.cpp"
+	<fstream>
+	<iostream>
+	<string>
+	<typeinfo>
+	<random>
+	<cmath>
+	<sstream>
+	<stdio.h>
+	<queue>
+	<time.h>
+	<algorithm>
+	<iterator>
+	<climits>
+	<queue>
+	<functional>
+	<string>
+
+1479835230 c:\users\stevecaboose\desktop\test\src\replacementselectionsort.cpp
+	"ReplacementSelectionSort.h"
+	<string>
+
+1479835230 c:\users\stevecaboose\desktop\test\include\tournamentsort.h
+	<vector>
+	<iostream>
+	<fstream>
+	<functional>
+	<typeinfo>
+	<string>
+	<queue>
+	<algorithm>
+	<functional>
+
+1479835474 c:\users\stevecaboose\desktop\test\src\maindriver.cpp
+	"ReplacementSelectionSort.h"
+	<fstream>
+	<iostream>
+	<string>
+	<typeinfo>
+	<random>
+	<cmath>
+	<sstream>
+	<stdio.h>
+	<queue>
+	<time.h>
+	<algorithm>
+	<iterator>
+	<climits>
+

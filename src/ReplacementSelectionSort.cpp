@@ -16,7 +16,7 @@ ReplacementSelectionSort<T>::ReplacementSelectionSort(const int _size, istream& 
 		rightHeapStart = size - 1;
 		rightHeapEnd = size;
 		dualHeap.resize(size);
-		sort(_infile, _outputfile);
+		//sort(_infile, _outputfile);
 }
 
 template <typename T>

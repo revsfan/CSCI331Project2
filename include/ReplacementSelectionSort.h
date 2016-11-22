@@ -34,8 +34,8 @@ class ReplacementSelectionSort
         */
         virtual ~ReplacementSelectionSort();
 
-    protected:
-    private:
+   // protected:
+    //private:
         bool activeLeftHeap; /**< True = left heap is the active heap*/
         bool direction_flag; /**< Sorting order True = ascending */
         int size;            /**< Fixed memory size */
