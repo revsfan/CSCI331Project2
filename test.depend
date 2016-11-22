@@ -63,3 +63,67 @@
 	<iterator>
 	<climits>
 
+1479835230 source:c:\users\stevecaboose\documents\github\csci331project2\src\replacementselectionsort.cpp
+	"ReplacementSelectionSort.h"
+	<string>
+
+1479835230 c:\users\stevecaboose\documents\github\csci331project2\include\replacementselectionsort.h
+	<vector>
+	<iostream>
+	<fstream>
+	<functional>
+	<typeinfo>
+
+1479835910 source:c:\users\stevecaboose\documents\github\csci331project2\mainprogram.cpp
+	"ReplacementSelectionSort.h"
+	"ReplacementSelectionSort.cpp"
+	"TournamentSort.h"
+	"mainDriver.cpp"
+	<fstream>
+	<iostream>
+	<string>
+	<typeinfo>
+	<random>
+	<cmath>
+	<sstream>
+	<stdio.h>
+	<queue>
+	<time.h>
+	<algorithm>
+	<iterator>
+	<climits>
+	<queue>
+	<functional>
+	<string>
+
+1479835230 c:\users\stevecaboose\documents\github\csci331project2\src\replacementselectionsort.cpp
+	"ReplacementSelectionSort.h"
+	<string>
+
+1479835909 c:\users\stevecaboose\documents\github\csci331project2\include\tournamentsort.h
+	<vector>
+	<iostream>
+	<fstream>
+	<functional>
+	<typeinfo>
+	<string>
+	<queue>
+	<algorithm>
+	<functional>
+
+1479836507 c:\users\stevecaboose\documents\github\csci331project2\src\maindriver.cpp
+	"ReplacementSelectionSort.h"
+	<fstream>
+	<iostream>
+	<string>
+	<typeinfo>
+	<random>
+	<cmath>
+	<sstream>
+	<stdio.h>
+	<queue>
+	<time.h>
+	<algorithm>
+	<iterator>
+	<climits>
+
