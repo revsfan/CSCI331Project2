@@ -186,7 +186,7 @@ vector<vector<T>> checkRuns(istream& infile, ostream& outfile, bool direction_fl
 	string curLine;
 
 	vector<vector<T>> listOfLists = {};
-	
+
 	ofstream outClean("out.txt");
 	ofstream myfile;
         myfile.open("rrnFile.text");
@@ -254,7 +254,7 @@ vector<vector<T>> checkRuns(istream& infile, ostream& outfile, bool direction_fl
 			<<"\nthe file is sorted: "<< (isSorted? "True" : "False")
 			<<"\nMax run length: " << maxRunLength
 			<<"\nMin run length: " << minRunLength - 1
-			<<"\ntotal Runs: " << totalRuns
+			<<"\ntotal Runs: " << totalRuns - 2;
 			<<"\ntotal items: " << totalObj;
 	cout << "returning the list\n"<<std::flush;
 	return listOfLists;

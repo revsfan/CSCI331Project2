@@ -39,6 +39,7 @@
 		<Unit filename="include/TournamentSort.h" />
 		<Unit filename="mainProgram.cpp" />
 		<Unit filename="src/ReplacementSelectionSort.cpp" />
+		<Unit filename="src/mainDriver.txt" />
 		<Extensions>
 			<code_completion />
 			<envvars />

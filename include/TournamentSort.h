@@ -71,7 +71,7 @@ class TournamentSort
 	}
 
 	//this function pushes the smallest item in the priority queue and repopulates it
-	pushToFinal(std::priority_queue
+	void pushToFinal(std::priority_queue
 					 <Node,
 					  std::vector<Node>,
 					  compare
