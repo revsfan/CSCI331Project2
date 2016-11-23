@@ -74,6 +74,10 @@ void randomStrings(ostream& outfile);
 void gen_random(char *s, const int len);
 
 
+/**
+*   Generate random floats
+*   @param outfile file to write random floats to
+*/
 void generateTestFileFloat(ostream& outfile);
 
 int main(int argc, char* argv[])
@@ -127,12 +131,15 @@ int main(int argc, char* argv[])
                             tournament.pushToFinal(PQ, final, listOfLists);
                             cout<<"about to write\n"<<std::flush;
                             ofstream myfile;
-                            myfile.open ("output.txt");
+                            myfile.open ("output.txt", ios::app);
                             for(int i = 0; i < tournament.finalVector.size()-1; i++)
                             {
                                 myfile << tournament.finalVector[i]<<"\n";
 
                             }
+
+                            myfile << "\n------------------------------------------------\n";
+                            myfile << "\nEnd of test\n";
                             myfile.close();
 
 
@@ -180,12 +187,15 @@ int main(int argc, char* argv[])
                             tournament.pushToFinal(PQ, final, listOfLists);
                             cout<<"about to write\n"<<std::flush;
                             ofstream myfile;
-                            myfile.open ("output.txt");
+                            myfile.open ("output.txt", ios::app);
                             for(int i = 0; i < tournament.finalVector.size()-1; i++)
                             {
                                 myfile << tournament.finalVector[i]<<"\n";
 
                             }
+
+                            myfile << "\n------------------------------------------------\n";
+                            myfile << "\nEnd of test\n";
                             myfile.close();
 
 
@@ -195,14 +205,14 @@ int main(int argc, char* argv[])
 
         case 'i':if(argc > 2){ //INT && ASCENDING
 
-                    test<int>("randomIntTest_in.txt", "ascending_randomIntTest_out", true, "integers");
+                    test<int>("randomIntTest_in.txt", "ascending_randomIntTest_out", true, "integers"); //NOT WORKING
                 }else{
                     test<int>("randomIntTest_in.txt", "descending_randomIntTest_out", false, "integers");
                 }
                 break;
         case 'f':if(argc > 2){ //FLOAT && ASCENDING
 
-                     test<float>("randomFloatTest_in.txt", "ascending_randomFloatTest_out", true, "floats");
+                     test<float>("randomFloatTest_in.txt", "ascending_randomFloatTest_out", true, "floats"); //NOT WORKING
                 }else{
                      test<float>("randomFloatTest_in.txt", "descending_randomFloatTest_out", false, "floats");
                 }
@@ -257,7 +267,7 @@ int main(int argc, char* argv[])
                             tournament.pushToFinal(PQ, final, listOfLists);
                             cout<<"about to write\n"<<std::flush;
                             ofstream myfile;
-                            myfile.open ("output.txt");
+                            myfile.open ("output.txt", ios::app);
                             for(int i = 0; i < tournament.finalVector.size()-1; i++)
                             {
                                 myfile << tournament.finalVector[i]<<"\n";
@@ -315,7 +325,7 @@ int main(int argc, char* argv[])
                             tournament.pushToFinal(PQ, final, listOfLists);
                             cout<<"about to write\n"<<std::flush;
                             ofstream myfile;
-                            myfile.open ("output.txt");
+                            myfile.open ("output.txt", ios::app);
                             for(int i = 0; i < tournament.finalVector.size()-1; i++)
                             {
                                 myfile << tournament.finalVector[i]<<"\n";

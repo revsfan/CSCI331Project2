@@ -74,7 +74,7 @@
 	<functional>
 	<typeinfo>
 
-1479879411 source:c:\users\stevecaboose\documents\github\csci331project2\mainprogram.cpp
+1479881960 source:c:\users\stevecaboose\documents\github\csci331project2\mainprogram.cpp
 	"ReplacementSelectionSort.h"
 	"ReplacementSelectionSort.cpp"
 	"TournamentSort.h"
@@ -100,7 +100,7 @@
 	"ReplacementSelectionSort.h"
 	<string>
 
-1479871484 c:\users\stevecaboose\documents\github\csci331project2\include\tournamentsort.h
+1479882629 c:\users\stevecaboose\documents\github\csci331project2\include\tournamentsort.h
 	<vector>
 	<iostream>
 	<fstream>

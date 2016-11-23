@@ -18,6 +18,7 @@ class TournamentSort
 	public:
 	int completedRuns;
 	vector<T> finalVector;
+
 	//helper node class
 	class Node
 	{
@@ -37,7 +38,10 @@ class TournamentSort
 	{
 		bool operator()(const Node& lhs, const Node& rhs)
 		{
-  			return lhs.value < rhs.value;
+
+
+                return lhs.value < rhs.value;
+
 		}
 
 	};
