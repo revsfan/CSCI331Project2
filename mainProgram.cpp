@@ -218,6 +218,7 @@ int main(int argc, char* argv[])
 
 
 
+                            for(int i = 0 ; i < 1; i++){ //Keep variables in an isolated scope
 
                             string inputFileName = "randomStringTest_in.txt";
                             string outputFileName = "ascending_randomStringTest_out";
@@ -266,6 +267,66 @@ int main(int argc, char* argv[])
                             myfile << "\nEnd of test\n";
                             myfile.close();
 
+                            }
+
+
+                            /////////////////////////////////////////
+
+
+
+
+
+                            for(int i = 0 ; i < 1; i++){ //Keep variables in an isolated scope
+
+                            string inputFileName = "randomStringTest_in.txt";
+                            string outputFileName = "descending_randomStringTest_out";
+                            cout << "starting\n"<<std::flush;
+                            ofstream testFile(inputFileName);
+                            cout << "Creating test file of Strings\n"<<std::flush;
+                            randomStrings(testFile);
+                            testFile.close();
+
+                            ifstream inputFile(inputFileName);
+                            bool ascending = false;
+                            ofstream otemp("temp.txt");
+                            cout<<"replacement selection\n"<<std::flush;
+                            ReplacementSelectionSort<string> sortedRuns(10, inputFile, otemp, ascending);
+                            ofstream outputFile(outputFileName);
+                            sortedRuns.sort(inputFile, otemp);
+                            otemp.close();
+
+                            cout << "checking runs\n"<<std::flush;
+                            ifstream itemp("temp.txt");
+                            // /ofstream outputFile(outputFileName);
+                            vector<vector<string>> listOfLists;
+
+                            listOfLists = checkRuns<string> (itemp, outputFile, ascending);
+                            cout << "got the list\n"<<std::flush;
+                            //vector<vector<string>> listOfLists = {second, third, first, fourth, seventh, sixth, fifth};
+                            vector<string> final= {};
+                            TournamentSort<string> tournament;
+
+                            std::priority_queue<TournamentSort<string>::Node,
+                            std::vector<TournamentSort<string>::Node>,TournamentSort<string>::compare> 		PQ;
+
+                            cout<<"about to initialize\n"<<std::flush;
+                            PQ = tournament.initPQ(PQ, listOfLists);
+                            cout<<"about to sortmerge\n"<<std::flush;
+                            tournament.pushToFinal(PQ, final, listOfLists);
+                            cout<<"about to write\n"<<std::flush;
+                            ofstream myfile;
+                            myfile.open ("output.txt");
+                            for(int i = 0; i < tournament.finalVector.size()-1; i++)
+                            {
+                                myfile << tournament.finalVector[i]<<"\n";
+
+                            }
+                            myfile << "\n------------------------------------------------\n";
+                            myfile << "\nEnd of test\n";
+                            myfile.close();
+
+                            }
+
 
 
 
@@ -274,52 +335,52 @@ int main(int argc, char* argv[])
 
 
 
-                            string inputFileName1 = "randomStringTest_in.txt";
-                            string outputFileName1 = "descending_randomStringTest_out";
-                            cout << "starting\n"<<std::flush;
-                            ofstream testFile1(inputFileName1);
-                            cout << "Creating test file of Strings\n"<<std::flush;
-                            randomStrings(testFile1);
-                            testFile1.close();
-
-                            ifstream inputFile1(inputFileName1);
-                            ascending = false;
-                            ofstream otemp1("temp.txt");
-                            cout<<"replacement selection\n"<<std::flush;
-                            ReplacementSelectionSort<string> sortedRuns1(10, inputFile1, otemp1, ascending);
-                            ofstream outputFile1(outputFileName1);
-                            sortedRuns1.sort(inputFile1, otemp1);
-                            otemp1.close();
-
-                            cout << "checking runs\n"<<std::flush;
-                            ifstream itemp1("temp.txt");
-                            // /ofstream outputFile(outputFileName);
-                            vector<vector<string>> listOfLists1;
-
-                            listOfLists1 = checkRuns<string> (itemp1, outputFile1, ascending);
-                            cout << "got the list\n"<<std::flush;
-                            //vector<vector<string>> listOfLists = {second, third, first, fourth, seventh, sixth, fifth};
-                            vector<string> final1 = {};
-                            TournamentSort<string> tournament1;
-
-                            std::priority_queue<TournamentSort<string>::Node,
-                            std::vector<TournamentSort<string>::Node>,TournamentSort<string>::compare> 		PQ1;
-
-                            cout<<"about to initialize\n"<<std::flush;
-                            PQ1 = tournament1.initPQ(PQ1, listOfLists1);
-                            cout<<"about to sortmerge\n"<<std::flush;
-                            tournament1.pushToFinal(PQ1, final1, listOfLists1);
-                            cout<<"about to write\n"<<std::flush;
-                            ofstream myfile1;
-                            myfile1.open ("output.txt");
-                            for(int i = 0; i < tournament1.finalVector.size()-1; i++)
-                            {
-                                myfile1 << tournament1.finalVector[i]<<"\n";
-
-                            }
-                            myfile1 << "\n------------------------------------------------\n";
-                            myfile1 << "\nEnd of test\n";
-                            myfile1.close();
+//                            string inputFileName1 = "randomStringTest_in.txt";
+//                            string outputFileName1 = "descending_randomStringTest_out";
+//                            cout << "starting\n"<<std::flush;
+//                            ofstream testFile1(inputFileName1);
+//                            cout << "Creating test file of Strings\n"<<std::flush;
+//                            randomStrings(testFile1);
+//                            testFile1.close();
+//
+//                            ifstream inputFile1(inputFileName1);
+//                            ascending = false;
+//                            ofstream otemp1("temp.txt");
+//                            cout<<"replacement selection\n"<<std::flush;
+//                            ReplacementSelectionSort<string> sortedRuns1(10, inputFile1, otemp1, ascending);
+//                            ofstream outputFile1(outputFileName1);
+//                            sortedRuns1.sort(inputFile1, otemp1);
+//                            otemp1.close();
+//
+//                            cout << "checking runs\n"<<std::flush;
+//                            ifstream itemp1("temp.txt");
+//                             /ofstream outputFile(outputFileName);
+//                            vector<vector<string>> listOfLists1;
+//
+//                            listOfLists1 = checkRuns<string> (itemp1, outputFile1, ascending);
+//                            cout << "got the list\n"<<std::flush;
+//                            vector<vector<string>> listOfLists = {second, third, first, fourth, seventh, sixth, fifth};
+//                            vector<string> final1 = {};
+//                            TournamentSort<string> tournament1;
+//
+//                            std::priority_queue<TournamentSort<string>::Node,
+//                            std::vector<TournamentSort<string>::Node>,TournamentSort<string>::compare> 		PQ1;
+//
+//                            cout<<"about to initialize\n"<<std::flush;
+//                            PQ1 = tournament1.initPQ(PQ1, listOfLists1);
+//                            cout<<"about to sortmerge\n"<<std::flush;
+//                            tournament1.pushToFinal(PQ1, final1, listOfLists1);
+//                            cout<<"about to write\n"<<std::flush;
+//                            ofstream myfile1;
+//                            myfile1.open ("output.txt");
+//                            for(int i = 0; i < tournament1.finalVector.size()-1; i++)
+//                            {
+//                                myfile1 << tournament1.finalVector[i]<<"\n";
+//
+//                            }
+//                            myfile1 << "\n------------------------------------------------\n";
+//                            myfile1 << "\nEnd of test\n";
+//                            myfile1.close();
 
 
 

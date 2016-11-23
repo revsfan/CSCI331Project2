@@ -1,9 +1,9 @@
-92 91 90 89 86 77 77 65 63 60 56 42 41 33 32 31 29 26 26 20 19 16 14 14 11 11 10 
-96 92 87 81 78 73 69 66 60 53 41 36 30 28 22 
-97 
+92 89 86 77 77 65 56 42 33 31 29 26 26 20 16 14 11 
+92 91 90 81 73 69 63 60 60 53 41 36 32 30 28 22 19 14 11 10 
+97 96 87 78 66 41 
 averageRunLength = 14
 the file is sorted: True
-Max run length: 27
-Min run length: 1
+Max run length: 20
+Min run length: 6
 total Runs: 3
 total items: 43
