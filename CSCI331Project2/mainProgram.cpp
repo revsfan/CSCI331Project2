@@ -82,14 +82,14 @@ void gen_random(char *s, const int len);
 
 int main()
 {
-    srand(33);
+    srand(15);
 
 	
     
-    //stringTest("randomStringTest_in.txt", "descending_randomStringTest_out", false);
-    //test<int>("randomTest_in.txt", "descending_randomTest_out", false, "integers");
-    //test<float>("randomTest_in.txt", "descending_randomTest_out", false, "integers");
-    test<double>("randomTest_in.txt", "descending_randomTest_out", false, "integers");
+    stringTest("randomStringTest_in.txt", "descending_randomStringTest_out", false);
+    test<int>("randomTest_in.txt", "descending_randomTest_out", false, "integers");
+    test<float>("randomTest_in.txt", "descending_randomTest_out", false, "floats");
+    test<double>("randomTest_in.txt", "descending_randomTest_out", false, "doubles");
 	return (0);
 }
 
@@ -137,12 +137,14 @@ void test(string input, string output, bool direction_flag, string typeUsed)
 	tournament.pushToFinal(PQ, final, listOfLists);
 	cout<<"about to write\n"<<std::flush;
 	ofstream myfile;
- 	myfile.open ("output.txt");
+ 	myfile.open ("output.txt", ios::app );
 	for(int i = 0; i < tournament.finalVector.size()-1; i++)
 	{
 		myfile << tournament.finalVector[i]<<"\n";
 
 	}
+	myfile <<"\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n";
+	myfile <<"\nend of test\n";
 	myfile.close();
     
 
@@ -161,12 +163,11 @@ void generateTestFile(ostream& outfile)
 
 		strlength = 2;
 
-		T num = (rand() % 89) + 10;
-
+		T num = fmod(0.89*rand(), 89)+10;
 
 		outfile << num << " ";
 
-		if(i % 5 == 0)
+		if(i % 15 == 0)
 		{
 
 			outfile << "\n";
@@ -336,12 +337,14 @@ void stringTest(string input, string output, bool asc)
 	tournament.pushToFinal(PQ, final, listOfLists);
 	cout<<"about to write\n"<<std::flush;
 	ofstream myfile;
- 	myfile.open ("output.txt");
+ 	myfile.open ("output.txt", ios::app );
 	for(int i = 0; i < tournament.finalVector.size()-1; i++)
 	{
 		myfile << tournament.finalVector[i]<<"\n";
 
 	}
+	myfile <<"\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n";
+	myfile <<"\nend of test\n";
 	myfile.close();
 
 }
