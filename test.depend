@@ -63,7 +63,7 @@
 	<iterator>
 	<climits>
 
-1479835230 source:c:\users\stevecaboose\documents\github\csci331project2\src\replacementselectionsort.cpp
+1479926010 source:c:\users\stevecaboose\documents\github\csci331project2\src\replacementselectionsort.cpp
 	"ReplacementSelectionSort.h"
 	<string>
 
@@ -74,7 +74,7 @@
 	<functional>
 	<typeinfo>
 
-1479881960 source:c:\users\stevecaboose\documents\github\csci331project2\mainprogram.cpp
+1479927086 source:c:\users\stevecaboose\documents\github\csci331project2\mainprogram.cpp
 	"ReplacementSelectionSort.h"
 	"ReplacementSelectionSort.cpp"
 	"TournamentSort.h"
@@ -96,11 +96,11 @@
 	<string>
 	<string.h>
 
-1479835230 c:\users\stevecaboose\documents\github\csci331project2\src\replacementselectionsort.cpp
+1479926010 c:\users\stevecaboose\documents\github\csci331project2\src\replacementselectionsort.cpp
 	"ReplacementSelectionSort.h"
 	<string>
 
-1479882629 c:\users\stevecaboose\documents\github\csci331project2\include\tournamentsort.h
+1479926010 c:\users\stevecaboose\documents\github\csci331project2\include\tournamentsort.h
 	<vector>
 	<iostream>
 	<fstream>
