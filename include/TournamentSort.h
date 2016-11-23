@@ -1,3 +1,8 @@
+/**
+*	@file TournamentSort.h
+*	@brief A class to apply tournament sort on a series of sorted lists
+*/
+
 #ifndef TOURNAMENT_SORT
 #define TOURNAMENT_SORT
 #include <vector>
@@ -11,22 +16,28 @@
 #include <functional>
 using namespace std;
 
-
+/**
+*   Main TournamentSort class
+*/
 template <class T>
 class TournamentSort
 {
 	public:
-	int completedRuns;
-	vector<T> finalVector;
+	int completedRuns; /**< Number of completed runs */
+	vector<T> finalVector; /**< The final vector containing a single sorted list */
 
 	//helper node class
+
+	/**
+	*   This Node is to help preserve meta data of the value
+	*/
 	class Node
 	{
 		public:
 
-		int position;
-		int rn;
-		T value ;
+		int position; /**< What position the value is in its respective list */
+		int rn; /**< Relative record number */
+		T value ; /**< The raw data that is being sorted */
 
 		Node(int x, int y, T z){position = x; rn = y; value = z;}
 		virtual ~Node(){}
@@ -34,6 +45,9 @@ class TournamentSort
 
 	};
 
+    /**
+    *   Sorts the values
+    */
 	struct compare
 	{
 		bool operator()(const Node& lhs, const Node& rhs)
@@ -46,9 +60,14 @@ class TournamentSort
 
 	};
 
-	TournamentSort(){}
-	virtual ~TournamentSort(){}
+	TournamentSort(){} /**< Default constructor */
+	virtual ~TournamentSort(){} /**< Default destructor */
 
+
+	/**
+	*   Initializes the priority queue
+	*   @param
+	*/
 	//this function initializes the prioroty queue
 	std::priority_queue<Node, std::vector<Node>,compare> initPQ(std::priority_queue
 					 				<Node,
@@ -74,6 +93,9 @@ class TournamentSort
 
 	}
 
+    /**
+    *   Pushes the smallest (unless sorting is changed) item in the priority queue and repopulates it
+    */
 	//this function pushes the smallest item in the priority queue and repopulates it
 	void pushToFinal(std::priority_queue
 					 <Node,

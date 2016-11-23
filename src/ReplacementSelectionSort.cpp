@@ -1,4 +1,7 @@
-
+/**
+*	@file ReplacementSelectionSort.cpp
+*	@brief A class to apply Replacement Selection Sort to a file of unsorted items
+*/
 
 #include "ReplacementSelectionSort.h"
 #include <string>
