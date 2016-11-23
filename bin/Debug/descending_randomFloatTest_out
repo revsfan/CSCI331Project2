@@ -1,8 +1,11 @@
- 
-
-averageRunLength = 0
+95 85 80 72 54 53 53 52 49 37 35 26 26 25 22 15 14 
+93 92 87 83 79 74 73 65 63 58 57 56 41 39 32 28 28 27 20 15 
+98 98 92 91 88 87 85 74 71 66 59 57 50 50 33 24 22 19 19 16 14 
+98 91 82 82 76 72 57 53 49 49 45 33 29 10 
+96 95 
+averageRunLength = 14
 the file is sorted: True
-Max run length: 0
-Min run length: 0
-total Runs: 4218064
-total items: 0
+Max run length: 21
+Min run length: 2
+total Runs: 5
+total items: 74

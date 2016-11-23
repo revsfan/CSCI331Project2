@@ -73,10 +73,8 @@ void randomStrings(ostream& outfile);
 */
 void gen_random(char *s, const int len);
 
-/**
-*   Merge a 2d-vector containing sorted vectors
-*   @param multiList A 2-d vector containing sorted vectors
-*/
+
+void generateTestFileFloat(ostream& outfile);
 
 int main(int argc, char* argv[])
 {
@@ -88,7 +86,7 @@ int main(int argc, char* argv[])
 
         switch(argv[1][1]){
 
-            case 's':if(argv[2][1] == 'a') { //string && ascending
+            case 's':if(argc > 2) { //string && ascending
 
 
 
@@ -195,21 +193,21 @@ int main(int argc, char* argv[])
                         }//END ELSE
                         break;
 
-        case 'i':if(argv[2][1] == 'a'){ //INT && ASCENDING
+        case 'i':if(argc > 2){ //INT && ASCENDING
 
                     test<int>("randomIntTest_in.txt", "ascending_randomIntTest_out", true, "integers");
                 }else{
                     test<int>("randomIntTest_in.txt", "descending_randomIntTest_out", false, "integers");
                 }
                 break;
-        case 'f':if(argv[2][1] == 'a'){ //FLOAT && ASCENDING
+        case 'f':if(argc > 2){ //FLOAT && ASCENDING
 
                      test<float>("randomFloatTest_in.txt", "ascending_randomFloatTest_out", true, "floats");
                 }else{
                      test<float>("randomFloatTest_in.txt", "descending_randomFloatTest_out", false, "floats");
                 }
                 break;
-        case 'd':if(argv[2][1] == 'a'){ //DOUBLE && ASCENDING
+        case 'd':if(argc > 2){ //DOUBLE && ASCENDING
 
                     test<double>("randomDoubleTest_in.txt", "ascending_randomDoubleTest_out", true, "doubles");
                 }else{
@@ -221,7 +219,7 @@ int main(int argc, char* argv[])
 
 
 
-                string inputFileName = "randomStringTest_in.txt";
+                            string inputFileName = "randomStringTest_in.txt";
                             string outputFileName = "ascending_randomStringTest_out";
                             cout << "starting\n"<<std::flush;
                             ofstream testFile(inputFileName);
@@ -264,7 +262,10 @@ int main(int argc, char* argv[])
                                 myfile << tournament.finalVector[i]<<"\n";
 
                             }
+                            myfile << "\n------------------------------------------------\n";
+                            myfile << "\nEnd of test\n";
                             myfile.close();
+
 
 
 
@@ -316,6 +317,8 @@ int main(int argc, char* argv[])
                                 myfile1 << tournament1.finalVector[i]<<"\n";
 
                             }
+                            myfile1 << "\n------------------------------------------------\n";
+                            myfile1 << "\nEnd of test\n";
                             myfile1.close();
 
 
@@ -361,14 +364,21 @@ void test(string input, string output, bool direction_flag, string typeUsed)
 	ofstream testFile(inputFileName);
 
 	cout << "Creating test file "<<typeUsed <<"\n"<<std::flush;
-	generateTestFile<T>(testFile);
+	if(typeUsed.compare("float") == 0){
+
+        generateTestFileFloat(testFile);
+
+	}else{
+
+        generateTestFile<T>(testFile);
+	}
 	testFile.close();
 
 	ifstream inputFile(input);
 	bool ascending = direction_flag;
 	ofstream otemp("temp.txt");
 	cout<<"replacement selection\n"<<std::flush;
-	ReplacementSelectionSort<string> sortedRuns(15, inputFile, otemp, ascending);
+	ReplacementSelectionSort<string> sortedRuns(10, inputFile, otemp, ascending);
 	ofstream outputFile(output);
 	sortedRuns.sort(inputFile, otemp);
 	otemp.close();
@@ -434,6 +444,33 @@ void generateTestFile(ostream& outfile)
 			}
 
 		}
+}
+
+void generateTestFileFloat(ostream& outfile){
+
+	int strlength;
+	int fileLen;
+	fileLen = rand() % (rand() % 1000);
+
+	for(int i = 0; i < fileLen; i++)
+	{
+
+		strlength = 2;
+
+		float num = (rand() / (float)RAND_MAX * 99) + 1;
+
+
+		outfile << num << " ";
+
+		if(i % 5 == 0)
+		{
+
+			outfile << "\n";
+			}
+
+		}
+
+
 }
 
 
