@@ -29,7 +29,7 @@ using namespace std;
 */
 
 template <typename T>
-void test(string inputFileName, string outputFileName, bool direction_flag);
+void test(string input, string output, bool direction_flag, string typeUsed);
 
 /**
 *   Function to randomly generage numbers to a file
@@ -78,41 +78,67 @@ void gen_random(char *s, const int len);
 */
 
 
+template <typename T>
+string NumberToString(T pNumber)
+{
+ ostringstream oOStrStream;
+ oOStrStream << pNumber;
+ return oOStrStream.str();
+}
+
 
 int main()
 {
     srand(33);
 
-	string inputFileName = "randomStringTest_in.txt";
-	string outputFileName = "descending_randomStringTest_out";
+
+
+    //stringTest("randomStringTest_in.txt", "descending_randomStringTest_out", false);
+    //test<int>("randomTest_in.txt", "descending_randomTest_out", false, "integers");
+    //test<float>("randomTest_in.txt", "descending_randomTest_out", false, "integers");
+    test<double>("randomDoubleTest_in.txt", "descending_randomDoubleTest_out", false, "integers");
+
+	return (0);
+}
+
+
+
+template <typename T>
+void test(string input, string output, bool direction_flag, string typeUsed)
+{
+	string inputFileName = input;
+	string outputFileName = output;
 	cout << "starting\n"<<std::flush;
 	ofstream testFile(inputFileName);
-	cout << "Creating test file of Strings\n"<<std::flush;
-	randomStrings(testFile);
+
+	cout << "Creating test file "<<typeUsed <<"\n"<<std::flush;
+	generateTestFile<T>(testFile);
 	testFile.close();
 
-	ifstream inputFile(inputFileName);
-	bool ascending = false;
+	ifstream inputFile(input);
+	bool ascending = direction_flag;
 	ofstream otemp("temp.txt");
 	cout<<"replacement selection\n"<<std::flush;
 	ReplacementSelectionSort<string> sortedRuns(15, inputFile, otemp, ascending);
-	ofstream outputFile(outputFileName);
+	ofstream outputFile(output);
 	sortedRuns.sort(inputFile, otemp);
 	otemp.close();
 
 	cout << "checking runs\n"<<std::flush;
 	ifstream itemp("temp.txt");
 	// /ofstream outputFile(outputFileName);
-	vector<vector<string>> listOfLists;
+	vector<vector<T>> listOfLists;
 
-	listOfLists = checkRuns<string> (itemp, outputFile, ascending);
+	listOfLists = checkRuns<T> (itemp, outputFile, ascending);
 	cout << "got the list\n"<<std::flush;
 	//vector<vector<string>> listOfLists = {second, third, first, fourth, seventh, sixth, fifth};
-	vector<string> final= {};
- 	TournamentSort<string> tournament;
+	vector<T> final= {};
+ 	TournamentSort<T> tournament;
 
-	std::priority_queue<TournamentSort<string>::Node,
-	std::vector<TournamentSort<string>::Node>,TournamentSort<string>::compare> 		PQ;
+	std::priority_queue<typename TournamentSort<T>::Node,
+						std::vector<typename TournamentSort<T>::Node>,
+						typename TournamentSort<T>::compare> 		PQ;
+
 
 	cout<<"about to initialize\n"<<std::flush;
 	PQ = tournament.initPQ(PQ, listOfLists);
@@ -127,37 +153,6 @@ int main()
 
 	}
 	myfile.close();
-
-	return (0);
-}
-
-
-template <typename T>
-void test(string inputFileName, string outputFileName, bool direction_flag)
-{
-
-	ofstream randomTestFile(inputFileName);
-
-	cout << "Creating test file\n";
-	generateTestFile<T>(randomTestFile);
-	randomTestFile.close();
-
-	ifstream inputFile(inputFileName);
-	ofstream otemp("temp.txt");
-	cout << "Running Replacement Selection Sort\n";
-
-	ReplacementSelectionSort<T> sortedRuns(15, inputFile ,otemp, direction_flag);
-	sortedRuns.sort();
-	otemp.close();
-
-	ifstream itemp("temp.txt");
-	ofstream outputFile(outputFileName);
-
-	cout << "...Done\n";
-	//checkRuns<T>(itemp, outputFile, direction_flag);
-
-    itemp.close();
-    std::remove("temp.txt");
 
 
 }
@@ -230,7 +225,7 @@ vector<vector<T>> checkRuns(istream& infile, ostream& outfile, bool direction_fl
 	while(getline(infile, curLine))
 	{
 		cout << "got a line\n"<<std::flush;
-		vector<string> currentRun = {};
+		vector<T> currentRun = {};
 		runLength = 0;
 		outfile << curLine << "\n";
 		outClean << curLine << "\n";
@@ -309,6 +304,7 @@ vector<vector<T>> checkRuns(istream& infile, ostream& outfile, bool direction_fl
 	return listOfLists;
 
 }
+
 
 /*void stringTest(string inputFileName, string outputFileName, bool ascending)
 {

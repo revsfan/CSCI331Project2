@@ -78,7 +78,7 @@ class TournamentSort
 					 > PQ, vector<T> final,
 					  std::vector<vector<T> > sortedLists)
 	{
-		std::sort( final.begin(), final.end());
+		//std::sort( final.begin(), final.end());
 		Node smallest = PQ.top();
 
 		PQ.pop();
