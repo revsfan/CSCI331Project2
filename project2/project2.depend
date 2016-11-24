@@ -1,0 +1,56 @@
+# depslib dependency file v1.0
+1478836286 source:c:\users\owner\desktop\project2\main.cpp
+	<iostream>
+	<vector>
+	"include\ReplacementSelectionSort.h"
+	"include\DualHeap.h"
+
+1478819501 c:\users\owner\desktop\project2\include\replacementselectionsort.h
+	<vector>
+	"src\ReplacementSelectionSort.cpp"
+
+1478734237 c:\users\owner\desktop\project2\src\replacementselectionsort.cpp
+	"ReplacementSelectionSort.h"
+	"DualHeap.h"
+	<vector>
+
+1478819492 c:\users\owner\desktop\project2\include\dualheap.h
+	<vector>
+	"src\DualHeap.cpp"
+
+1478734237 c:\users\owner\desktop\project2\src\dualheap.cpp
+	"DualHeap.h"
+	<stdlib.h>
+	<cstdlib>
+	<cmath>
+
+1478734237 source:c:\users\owner\desktop\project2\src\dualheap.cpp
+	"DualHeap.h"
+	<stdlib.h>
+	<cstdlib>
+	<cmath>
+
+1478734237 source:c:\users\owner\desktop\project2\src\replacementselectionsort.cpp
+	"ReplacementSelectionSort.h"
+	"DualHeap.h"
+	<vector>
+
+1478819492 c:\users\owner\desktop\project2\\include\dualheap.h
+	<vector>
+	"src\DualHeap.cpp"
+
+1478836251 c:\users\owner\desktop\project2\\src\replacementselectionsort.cpp
+	"include\ReplacementSelectionSort.h"
+	"include\DualHeap.h"
+	<vector>
+
+1478819501 c:\users\owner\desktop\project2\\include\replacementselectionsort.h
+	<vector>
+	"src\ReplacementSelectionSort.cpp"
+
+1478739217 c:\users\owner\desktop\project2\\src\dualheap.cpp
+	"include\DualHeap.h"
+	<stdlib.h>
+	<cstdlib>
+	<cmath>
+
