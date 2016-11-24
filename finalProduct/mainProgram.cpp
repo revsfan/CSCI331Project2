@@ -206,14 +206,14 @@ int main(int argc, char* argv[])
 
         case 'i':if(argc > 2){ //INT && ASCENDING
 
-                    test<int>("randomIntTest_in.txt", "ascending_randomIntTest_out", false, "integers", true); //NOT WORKING
+                    test<int>("randomIntTest_in.txt", "ascending_randomIntTest_out", false, "integers", true); //
                 }else{
                     test<int>("randomIntTest_in.txt", "descending_randomIntTest_out", false, "integers", false);
                 }
                 break;
         case 'f':if(argc > 2){ //FLOAT && ASCENDING
 
-                     test<float>("randomFloatTest_in.txt", "ascending_randomFloatTest_out", false, "floats", true); //NOT WORKING
+                     test<float>("randomFloatTest_in.txt", "ascending_randomFloatTest_out", false, "floats", true); //
                 }else{
                      test<float>("randomFloatTest_in.txt", "descending_randomFloatTest_out", false, "floats", false);
                 }
