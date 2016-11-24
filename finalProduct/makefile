@@ -3,7 +3,7 @@
 # Variables to control Makefile operations
 
 CXX = g++
-CXXFLAGS = -Wall -g
+CXXFLAGS = -std=c++0X
 
 mainProgram: mainProgram.cpp ReplacementSelectionSort.cpp ReplacementSelectionSort.h TournamentSort.h
 	$(CXX)	$(CXXFLAGS) -o mainProgram mainProgram.o ReplacementSelectionSort.o TournamentSort.o
