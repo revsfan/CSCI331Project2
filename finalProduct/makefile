@@ -5,6 +5,6 @@
 CXX = g++
 CXXFLAGS = -Wall -g
 
-main: main.cpp ReplacementSelectionSort.cpp ReplacementSelectionSort.h TournamentSort.h
+mainProgram: mainProgram.cpp ReplacementSelectionSort.cpp ReplacementSelectionSort.h TournamentSort.h
 	$(CXX)	$(CXXFLAGS) -o driver driver.o mainProgram.o ReplacementSelectionSort.o TournamentSort.o
 
